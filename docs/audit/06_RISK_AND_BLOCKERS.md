@@ -5,7 +5,7 @@
 
 | ID | Area | Risk / Blocker | Evidence | Severity | Suggested Action | Blocks Starter V1? |
 |---|---|---|---|---|---|---|
-| R-001 | A-001 PostgreSQL provider | Repository is vendor-neutral and cannot establish the best current default vendor without external facts. | AUD-020 generic `DATABASE_URL`, no provider SDK/binding/test | HIGH | KEEP + TEST | Blocks freezing A-001; does not block audit completion |
+| R-001 | A-001 PostgreSQL provider qualification | Vendor is intentionally unpinned; real provider/runtime behavior remains unverified until a concrete environment exists. | AUD-020 generic `DATABASE_URL`, no provider SDK/binding/test; DEC-A001-POLICY | MEDIUM | KEEP + TEST | No for Starter design; qualification gates the selected environment before release |
 | R-002 | Cloudflare release | No OpenNext/Wrangler/Worker/CI integration or Cloudflare Staging exists. | AUD-010, AUD-070 | CRITICAL | PATCH | Yes |
 | R-003 | Environment promotion | No isolated three-environment model, same-commit promotion, migration order, or rollback process. | AUD-010, AUD-070 | HIGH | PATCH | Yes |
 | R-004 | Test/CI baseline | No automated tests, test framework, typecheck script, CI, or executed app build evidence. | AUD-070 | CRITICAL | PATCH | Yes |
@@ -21,22 +21,13 @@
 | R-014 | UI verification/semantics | No browser/a11y/visual tests; localized pricing/theme controls and route states need fixes. | AUD-060, AUD-070 | HIGH | PATCH | Yes for reusable UI release gate |
 | R-015 | Non-Core retained surfaces | Credits/subscriptions/API keys/affiliate/docs/charts/editor lack complete tests and may remain visible in current template. | AUD-040, AUD-050, AUD-060 | MEDIUM | KEEP-DISABLED | No when disabled |
 
-## A-001 Blocker
+## A-001 Policy
 
-`BLOCKED — EXTERNAL FACT VERIFICATION REQUIRED`
+`FROZEN — PostgreSQL Provider Policy R1`
 
-The planner/user must approve a provider shortlist and verify these current external facts before freezing a default:
+The Starter freezes PostgreSQL + Drizzle + generic `DATABASE_URL`, not a permanent vendor. Provider-specific coupling in reusable business/domain code is forbidden by default, and the vendor remains `UNPINNED` during Starter design.
 
-1. Standard PostgreSQL connection-string and `postgres`/Drizzle support from Cloudflare Workers/OpenNext.
-2. Direct Worker connectivity and current Hyperdrive compatibility, including TLS/network restrictions.
-3. Serverless connection, pooling, concurrency, idle timeout, and connection-limit behavior.
-4. Current pricing for isolated DEVELOPMENT/STAGING/PRODUCTION databases, compute/storage, egress, backups, and recovery.
-5. Regions and measured latency relative to intended Cloudflare deployments/users.
-6. Current availability/GA status, operational limits, maintenance behavior, and support/SLA.
-7. Migration, branching, PITR/backup/restore, observability, access control, and credential rotation capabilities.
-8. A real Cloudflare Staging migration/read/write/concurrency/transaction smoke result for finalists.
-
-No vendor is selected from model memory or the Supabase comment in `.env.example`.
+The PQ-01 through PQ-13 gate in `DEC-A001-POLICY` becomes mandatory only when a real provider/environment is provisioned and before that environment is relied on for release. Hyperdrive is optional and qualifies only when selected. No Neon/PlanetScale/Supabase bake-off is required for Starter Detailed Spec, Delivery Protocol Detailed Spec, design audit, or Design Freeze.
 
 ## A-002 Status
 
@@ -44,7 +35,7 @@ No vendor is selected from model memory or the Supabase comment in `.env.example
 
 ## Planner/User Actions
 
-1. Resolve A-001 through the external fact checklist; freeze one provider only after Staging evidence.
-2. Convert `GAP-001` through `GAP-019` into a Detailed Spec and deterministic implementation Task graph; do not execute directly from the audit matrix.
-3. Define real provider accounts/credentials and isolated Cloudflare Staging resources for DB, Google, Resend, Stripe, Creem, and enabled optional modules.
+1. Convert `GAP-001` through `GAP-019` into a Detailed Spec and deterministic implementation Task graph; do not execute directly from the audit matrix.
+2. Apply A-001 Provider Qualification only when a concrete provider/environment is selected.
+3. Define real provider accounts/credentials and isolated Cloudflare Staging resources before the relevant environment is relied on for release, not as a Starter design prerequisite.
 4. Approve any future deletion separately; this audit has no deletion candidate.

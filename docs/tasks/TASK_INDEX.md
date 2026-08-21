@@ -704,12 +704,716 @@
           "Review git diff --name-only for the complete audit branch and confirm no business/application implementation changes were introduced by audit Tasks"
         ]
       }
+    },
+    {
+      "task_id": "STS-010",
+      "title": "Kyd SaaS Starter Detailed Spec Authoring",
+      "type": "DESIGN",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Author a complete, traceable Kyd SaaS Starter Detailed Spec from the completed sa-template audit and frozen Starter decisions. The resulting spec describes the target reusable Starter without implementing it.",
+        "depends_on": [
+          "AUD-080"
+        ],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KSS-DS-AUTH-R1",
+              "version": "R1"
+            },
+            {
+              "authority_id": "DEC-A001-POLICY",
+              "version": "R1"
+            },
+            {
+              "authority_id": "AUDIT-001",
+              "version": "v1"
+            }
+          ],
+          "reference": [
+            { "authority_id": "AUD-FINAL-00", "version": "v1" },
+            { "authority_id": "AUD-FINAL-01", "version": "v1" },
+            { "authority_id": "AUD-FINAL-02", "version": "v1" },
+            { "authority_id": "AUD-FINAL-03", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" },
+            { "authority_id": "AUD-FINAL-06", "version": "v1" },
+            { "authority_id": "AUD-FINAL-07", "version": "v1" },
+            { "authority_id": "AUD-FINAL-08", "version": "v1" },
+            { "authority_id": "AUD-WORK-000", "version": "v1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-020", "version": "v1" },
+            { "authority_id": "AUD-WORK-030", "version": "v1" },
+            { "authority_id": "AUD-WORK-040", "version": "v1" },
+            { "authority_id": "AUD-WORK-050", "version": "v1" },
+            { "authority_id": "AUD-WORK-060", "version": "v1" },
+            { "authority_id": "AUD-WORK-070", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC_AUTHORING_AUTHORITY.md",
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+            "docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+            "docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/product/FEATURE_MATRIX.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": [
+            "Repository read-only inspection for design evidence traceability"
+          ]
+        },
+        "shared_resources": [
+          "STARTER_DESIGN_RUNTIME_STATE",
+          "STARTER_DETAILED_SPEC_ARTIFACTS"
+        ],
+        "gates_required": [
+          "RUNTIME_V1_FREEZE",
+          "AUDIT_BOOTSTRAP"
+        ],
+        "allowed_changes": [
+          "Create or update the registered docs/starter design and Authority artifacts",
+          "Register Starter design Authority and evidence in docs/PROJECT_INDEX.md",
+          "Update Runtime state/task/feature/trace files only for STS-010 execution and deterministic STS-020 activation"
+        ],
+        "forbidden_changes": [
+          "Any application implementation change",
+          "Any dependency or lockfile change",
+          "Any build or deployment configuration change",
+          "Any database schema, migration, or external resource change",
+          "Any Cloudflare, PostgreSQL provider, payment, email, AI, storage, or other provider provisioning",
+          "Any production or simulated-production validation",
+          "Any implementation Task creation or STS-020 execution"
+        ],
+        "acceptance": [
+          "The master Detailed Spec contains all 32 required non-empty sections and a complete material-capability contract",
+          "The Gap Closure Matrix contains GAP-001 through GAP-019 exactly once with P0=8, P1=8, and P2=3",
+          "The Acceptance Matrix maps every Core and implementation-relevant optional capability to observable evidence",
+          "A-001 and A-002 are represented without vendor pinning, product-specific leakage, or architecture replacement",
+          "Every capability uses one allowed reuse action and no REFACTOR or DELETE is introduced",
+          "Audit evidence, frozen decisions, gaps, and acceptance IDs are traceable",
+          "No application, dependency, build, deploy, schema, migration, or external resource change occurs",
+          "STS-F010 and STS-010 become VERIFIED and STS-020 becomes READY at closeout"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Confirm all registered Starter design artifacts exist and are non-empty",
+          "Verify exact GAP-001 through GAP-019 uniqueness and P0/P1/P2 counts",
+          "Verify capability schema, allowed action vocabulary, evidence links, and acceptance coverage",
+          "Review git diff --name-only and confirm no application/dependency/build/deploy/schema/migration file changed"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-020",
+      "title": "Starter Detailed Spec Completeness / Ambiguity Audit",
+      "type": "AUDIT",
+      "status": "BLOCKED",
+      "contract": {
+        "goal": "Independently audit the authored Starter Detailed Spec for completeness, implementation-affecting ambiguity, traceability, frozen-decision coverage, architecture drift, product-specific leakage, and mechanically testable acceptance.",
+        "depends_on": [
+          "STS-010"
+        ],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "AUD-FINAL-00", "version": "v1" },
+            { "authority_id": "AUD-FINAL-02", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/**",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/product/FEATURE_MATRIX.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Repository read-only evidence review"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create or update registered docs/starter design review artifacts",
+          "Update Runtime state/task/feature/trace files for deterministic audit closeout"
+        ],
+        "forbidden_changes": [
+          "Any application, dependency, database, build, deployment, or external resource change",
+          "Any Detailed Spec freeze before all implementation-affecting ambiguity is resolved",
+          "Any implementation Task creation or STS-030 execution"
+        ],
+        "acceptance": [
+          "All material domains, 19 gaps, frozen decisions, capability contracts, acceptance, and traceability are independently checked",
+          "Every implementation-affecting ambiguity is resolved or explicitly blocks STS-030",
+          "No application implementation file is changed",
+          "STS-020 becomes VERIFIED and STS-030 becomes READY only when the audit passes"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Review the complete Starter design artifact set against KSS-DS-AUTH-R1 and audit evidence",
+          "Review git diff --name-only for design-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-021",
+      "title": "Build STS-020 Findings Resolution Packet",
+      "type": "DESIGN",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Convert F-001 through F-009 into a complete, evidence-backed mechanical/planner/user decision packet without modifying candidate design artifacts.",
+        "depends_on": ["STS-010"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS021-RESOLUTION-R1", "version": "R1" },
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS020-AUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-020", "version": "v1" },
+            { "authority_id": "AUD-WORK-030", "version": "v1" },
+            { "authority_id": "AUD-WORK-040", "version": "v1" },
+            { "authority_id": "AUD-WORK-060", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_STS020_FINDINGS_RESOLUTION_PACKET.md",
+            "docs/starter/KYD_SAAS_STARTER_STS021_FINDINGS_RESOLUTION_AUTHORITY.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Repository read-only review of finding-cited evidence"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_FINDINGS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register the STS-021 Authority and STS-020 Findings Resolution Packet",
+          "Update Runtime state/task/trace files only for recovery-task activation and closeout"
+        ],
+        "forbidden_changes": [
+          "Modify docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+          "Modify docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+          "Modify docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any candidate design correction, correction-task creation, Detailed Spec freeze, or STS-030 activation/execution"
+        ],
+        "acceptance": [
+          "F-001 through F-009 each appear once and use exactly one R1/R2/R3/R4/R5 resolution class",
+          "F-001, F-002, F-003, F-006, and F-009 have complete bounded user decision packets",
+          "Every non-user finding has a deterministic evidence-backed resolution path",
+          "Correction dependency order, later touch set, re-audit requirements, and final decision checklist are explicit",
+          "Candidate Detailed Spec, Gap Closure Matrix, and Acceptance Matrix remain unchanged",
+          "No application implementation file is changed and STS-030 remains NOT_READY"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify all nine finding classifications and five user decision packets",
+          "Compare candidate artifact SHA-256 values with the pre-STS-021 values",
+          "Review git diff --name-only and git status --short for authorized documentation-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-021A",
+      "title": "Map STS-020 Findings to Existing sa-template Implementation",
+      "type": "AUDIT",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Re-evaluate F-001 through F-009 against actual sa-template code, configuration, and evidence before asking for new design decisions.",
+        "depends_on": ["STS-021"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KPS-CAP-REUSE-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-MAPPING-R1", "version": "R1" },
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021-RESOLUTION-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS020-AUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021-PACKET-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-020", "version": "v1" },
+            { "authority_id": "AUD-WORK-030", "version": "v1" },
+            { "authority_id": "AUD-WORK-040", "version": "v1" },
+            { "authority_id": "AUD-WORK-060", "version": "v1" },
+            { "authority_id": "AUD-WORK-070", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/decisions/KYD_CAPABILITY_FIRST_MULTI_TEMPLATE_REUSE_POLICY.md",
+            "docs/starter/KYD_SAAS_STARTER_STS021A_EXISTING_IMPLEMENTATION_MAPPING_AUTHORITY.md",
+            "docs/starter/KYD_SAAS_STARTER_STS020_EXISTING_IMPLEMENTATION_MAPPING.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Repository read-only inspection of finding-related source, configuration, and registered evidence"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_FINDINGS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register the capability-first reuse and STS-021A mapping Authorities",
+          "Create the STS-020 Existing Implementation Mapping artifact",
+          "Update Runtime state/task/trace files only for STS-021A activation and closeout"
+        ],
+        "forbidden_changes": [
+          "Modify docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+          "Modify docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+          "Modify docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any candidate design correction, user-decision selection, correction-task creation, Detailed Spec freeze, or STS-030 activation/execution"
+        ],
+        "acceptance": [
+          "F-001 through F-009 are each mapped to actual sa-template implementation and exact repository paths",
+          "Every finding records current behavior/defaults/tests, frozen target, actual delta, minimum reuse action, and decision status",
+          "Former user decisions are independently re-evaluated and every reclassification is evidence-backed",
+          "Remaining true user decisions and the minimum later correction plan are explicit",
+          "Candidate Detailed Spec, Gap Closure Matrix, and Acceptance Matrix remain unchanged",
+          "No application implementation file is changed and STS-030 remains NOT_READY"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify all nine finding mappings, reuse actions, reclassifications, provenance paths, and remaining decisions",
+          "Compare candidate artifact SHA-256 values with the pre-STS-021A values",
+          "Review git diff --name-only and git status --short for authorized documentation-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-022",
+      "title": "Correct Starter Detailed Spec from STS-020 Findings",
+      "type": "DESIGN",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Apply all resolved F-001 through F-009 corrections to the candidate Starter design artifacts while preserving mapped sa-template implementation and avoiding application work.",
+        "depends_on": ["STS-021A"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS022-CORRECTION-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-RESOLUTION-R2", "version": "R2" },
+            { "authority_id": "KPS-CAP-REUSE-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-MAPPING-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021-RESOLUTION-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS020-AUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021-PACKET-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-MAPPING-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-020", "version": "v1" },
+            { "authority_id": "AUD-WORK-030", "version": "v1" },
+            { "authority_id": "AUD-WORK-040", "version": "v1" },
+            { "authority_id": "AUD-WORK-060", "version": "v1" },
+            { "authority_id": "AUD-WORK-070", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+            "docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+            "docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+            "docs/starter/KYD_SAAS_STARTER_STS021A_RESOLUTION_DECISIONS.md",
+            "docs/starter/KYD_SAAS_STARTER_STS022_CORRECTION_AUTHORITY.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md",
+            "docs/product/FEATURE_MATRIX.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": []
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register the STS-021A resolution and STS-022 correction Authorities",
+          "Correct the candidate Detailed Spec, Gap Closure Matrix, and Acceptance Matrix for F-001 through F-009",
+          "Update Runtime state/task/feature/trace files only for STS-022 activation and closeout",
+          "Register a fresh-context re-audit task without executing it"
+        ],
+        "forbidden_changes": [
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any new abstraction not proven by mapped sa-template evidence",
+          "Any capability or gap count change without stopping on a proven baseline conflict",
+          "Any re-audit or STS-030 execution"
+        ],
+        "acceptance": [
+          "F-001 through F-009 are corrected according to the frozen resolution decisions and mapped sa-template evidence",
+          "The Detailed Spec, Gap Closure Matrix, and Acceptance Matrix are synchronized",
+          "The capability count remains 32 and the gap inventory remains P0=8, P1=8, P2=3, total=19",
+          "No new abstraction is introduced and the mapped existing capabilities are preserved",
+          "No application implementation file is changed",
+          "A fresh-context re-audit remains required before STS-030"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify the F-001 through F-009 correction checklist against all three candidate artifacts",
+          "Verify capability and gap counts and cross-artifact traceability",
+          "Review git diff --name-only and git status --short for authorized design-document scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-023",
+      "title": "Starter Detailed Spec Completeness / Ambiguity Re-audit",
+      "type": "AUDIT",
+      "status": "BLOCKED",
+      "contract": {
+        "goal": "Independently re-audit the STS-022-corrected Starter Detailed Spec, Gap Closure Matrix, and Acceptance Matrix against the STS-020 completeness and ambiguity criteria before freeze.",
+        "depends_on": ["STS-022"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-RESOLUTION-R2", "version": "R2" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "KPS-CAP-REUSE-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS020-AUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021-PACKET-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-MAPPING-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-FINAL-00", "version": "v1" },
+            { "authority_id": "AUD-FINAL-02", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC_REAUDIT.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md",
+            "docs/product/FEATURE_MATRIX.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Read-only inspection of the corrected candidate design artifacts and registered Audit/Authority evidence"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register a fresh-context re-audit artifact",
+          "Update Runtime state/task/feature/trace files only for STS-023 closeout"
+        ],
+        "forbidden_changes": [
+          "Modify the candidate Detailed Spec, Gap Closure Matrix, or Acceptance Matrix during audit",
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any finding suppression, implementation work, or STS-030 execution"
+        ],
+        "acceptance": [
+          "All STS-020 audit dimensions are independently re-evaluated against the corrected artifacts",
+          "All F-001 through F-009 corrections and their cross-artifact traceability are tested",
+          "Capability, acceptance, gap, priority, and reuse-action counts are verified",
+          "No unresolved BLOCKER or MAJOR remains before STS-030 can become READY",
+          "No candidate design or application implementation file is changed"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify the re-audit result follows the STS-020 deterministic result rule",
+          "Review git diff --name-only and candidate artifact hashes for audit-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-024",
+      "title": "Close STS-023 Residual Design Ambiguities",
+      "type": "DESIGN",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Close only F-001, F-003, F-004, F-006, R-001, and R-002 through the smallest evidence-backed documentation corrections while preserving mapped sa-template implementation.",
+        "depends_on": ["STS-022"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS024-RESIDUAL-CORRECTION-R1", "version": "R1" },
+            { "authority_id": "KPS-CAP-REUSE-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-RESOLUTION-R2", "version": "R2" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS023-REAUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-MAPPING-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-WORK-060", "version": "v1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-050", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+            "docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+            "docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+            "docs/starter/KYD_SAAS_STARTER_STS024_RESIDUAL_CORRECTION_AUTHORITY.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Read-only source inspection for Replicate credential and construction evidence"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register the STS-024 residual correction Authority",
+          "Correct only F-001, F-003, F-004, F-006, R-001, and R-002 in the three candidate design artifacts",
+          "Update Runtime state/task/trace files only for STS-024 activation and closeout",
+          "Register STS-025 as the required fresh-context re-audit without executing it"
+        ],
+        "forbidden_changes": [
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any capability or gap ID/count/priority change",
+          "Any new abstraction, closed-finding regression, STS-025 execution, or STS-030 execution"
+        ],
+        "acceptance": [
+          "F-001, F-003, F-004, F-006, R-001, and R-002 are closed with deterministic evidence-backed wording",
+          "The Detailed Spec, Gap Closure Matrix, and Acceptance Matrix are synchronized",
+          "Capabilities remain 32; acceptance records remain 32; gaps remain P0=8, P1=8, P2=3, total=19",
+          "F-002, F-005, F-007, F-008, and F-009 do not regress",
+          "Capability-first reuse remains PASS and no new abstraction is introduced",
+          "No application implementation file is changed",
+          "STS-025 is registered for fresh-context re-audit while STS-030 remains NOT_READY"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify each residual finding against the STS-023 re-audit and STS-024 Authority",
+          "Verify capability, acceptance, gap, and priority counts plus closed-finding invariants",
+          "Review git diff --name-only and git status --short for authorized documentation-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-025",
+      "title": "Fresh-Context Re-Audit After STS-024",
+      "type": "AUDIT",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Independently re-audit the STS-024-corrected Starter Detailed Spec, Gap Closure Matrix, and Acceptance Matrix against the STS-020 and STS-023 completeness and ambiguity criteria before freeze.",
+        "depends_on": ["STS-024"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS024-RESIDUAL-CORRECTION-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "KPS-CAP-REUSE-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "KSS-STS023-REAUDIT-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-RESOLUTION-R2", "version": "R2" },
+            { "authority_id": "KSS-STS021A-MAPPING-RESULT-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" },
+            { "authority_id": "AUD-WORK-010", "version": "v1" },
+            { "authority_id": "AUD-WORK-040", "version": "v1" },
+            { "authority_id": "AUD-WORK-050", "version": "v1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC_REAUDIT_STS025.md",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": ["Read-only inspection of the STS-024-corrected candidate design artifacts and exact registered evidence"]
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Create and register the STS-025 fresh-context re-audit artifact",
+          "Update Runtime state/task/trace files only for STS-025 closeout"
+        ],
+        "forbidden_changes": [
+          "Modify the candidate Detailed Spec, Gap Closure Matrix, or Acceptance Matrix during audit",
+          "Any application, dependency, database, build, deployment, environment, or external resource change",
+          "Any finding suppression, implementation work, or STS-030 execution"
+        ],
+        "acceptance": [
+          "All STS-020 and STS-023 audit dimensions are independently re-evaluated against the STS-024-corrected artifacts",
+          "F-001, F-003, F-004, F-006, R-001, and R-002 closure and cross-artifact traceability are tested",
+          "F-002, F-005, F-007, F-008, and F-009 remain closed",
+          "Capability, acceptance, gap, priority, and reuse-action counts are verified",
+          "No unresolved BLOCKER, MAJOR, or implementation-affecting ambiguity remains before STS-030 can become READY",
+          "No candidate design or application implementation file is changed"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify the re-audit result follows the STS-020 deterministic result rule",
+          "Review git diff --name-only and candidate artifact hashes for audit-only scope"
+        ]
+      }
+    },
+    {
+      "task_id": "STS-030",
+      "title": "Starter Detailed Spec Freeze",
+      "type": "DECISION",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Freeze the audited Kyd SaaS Starter Detailed Spec as implementation planning Authority without starting implementation.",
+        "depends_on": ["STS-025"],
+        "authority_inputs": {
+          "mandatory": [
+            { "authority_id": "KSS-DS-AUTH-R1", "version": "R1" },
+            { "authority_id": "KSS-STS020-AUDIT-R1", "version": "R1" },
+            { "authority_id": "KSS-STS021A-RESOLUTION-R2", "version": "R2" },
+            { "authority_id": "KSS-STS024-RESIDUAL-CORRECTION-R1", "version": "R1" },
+            { "authority_id": "DEC-A001-POLICY", "version": "R1" },
+            { "authority_id": "AUDIT-001", "version": "v1" }
+          ],
+          "reference": [
+            { "authority_id": "AUD-FINAL-00", "version": "v1" },
+            { "authority_id": "AUD-FINAL-02", "version": "v1" },
+            { "authority_id": "AUD-FINAL-04", "version": "v1" },
+            { "authority_id": "AUD-FINAL-05", "version": "v1" },
+            { "authority_id": "KSS-DS-SPEC-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-GAPS-R1", "version": "R1" },
+            { "authority_id": "KSS-DS-ACCEPT-R1", "version": "R1" }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/starter/**",
+            "docs/PROJECT_INDEX.md",
+            "docs/CURRENT_STATE.md",
+            "docs/product/FEATURE_MATRIX.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [],
+          "api": [],
+          "other": []
+        },
+        "shared_resources": ["STARTER_DESIGN_RUNTIME_STATE", "STARTER_DETAILED_SPEC_ARTIFACTS"],
+        "gates_required": ["RUNTIME_V1_FREEZE", "AUDIT_BOOTSTRAP"],
+        "allowed_changes": [
+          "Freeze registered Starter design artifacts after verified review",
+          "Update Runtime state/task/feature/trace files for deterministic closeout"
+        ],
+        "forbidden_changes": [
+          "Any application, dependency, database, build, deployment, or external resource change",
+          "Any freeze with unresolved implementation-affecting ambiguity",
+          "Any implementation Task creation or execution"
+        ],
+        "acceptance": [
+          "STS-025 is VERIFIED with no unresolved implementation-affecting ambiguity",
+          "The exact reviewed design artifact versions and hashes are registered as FROZEN Authority",
+          "No application implementation file is changed",
+          "STS-030 becomes VERIFIED without starting implementation"
+        ],
+        "verification": [
+          "python3 tools/kyd_runtime_validate.py --root . --mode closeout",
+          "Verify frozen artifact hashes against docs/PROJECT_INDEX.md",
+          "Review git diff --name-only for design-only scope"
+        ]
+      }
     }
   ]
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-All Audit Tasks are fully preplanned here.
+All Full Repository Audit and current Starter Detailed Spec design Tasks are fully preplanned here.
 
 The sequence is intentionally deterministic:
 
@@ -718,3 +1422,15 @@ AUD-000 → AUD-010 → AUD-020 → AUD-030 → AUD-040 → AUD-050 → AUD-060 
 ```
 
 Do not reorder or parallelize in Runtime V1 pilot. Every `depends_on` Task must be `VERIFIED`.
+
+The authorized design and recovery sequence is:
+
+```text
+STS-010 → STS-020 (historical failed audit)
+    └────→ STS-021 findings-resolution recovery
+              └────→ STS-021A existing-implementation mapping recovery
+                        └────→ STS-022 correction → STS-023 failed re-audit
+                                  └────→ STS-024 residual correction → STS-025 fresh-context re-audit → STS-030 freeze
+```
+
+STS-020 and STS-023 remain historical BLOCKED audit results. STS-024, STS-025, and STS-030 are VERIFIED. The Kyd SaaS Starter Detailed Spec R1 is FROZEN. No implementation Task is registered or authorized by this sequence.

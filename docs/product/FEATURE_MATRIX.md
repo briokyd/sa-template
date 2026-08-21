@@ -157,6 +157,45 @@
       "verification": [
         "AUD-080"
       ]
+    },
+    {
+      "feature_id": "STS-F010",
+      "name": "Kyd SaaS Starter Detailed Spec Authoring",
+      "scope": "IN_SCOPE",
+      "priority": "P0",
+      "status": "VERIFIED",
+      "authority": ["KSS-DS-AUTH-R1", "DEC-A001-POLICY", "AUDIT-001"],
+      "implementation": [
+        "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+        "docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+        "docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md"
+      ],
+      "verification": ["STS-010"]
+    },
+    {
+      "feature_id": "STS-F020",
+      "name": "Starter Detailed Spec Completeness / Ambiguity Audit",
+      "scope": "IN_SCOPE",
+      "priority": "P0",
+      "status": "BLOCKED",
+      "authority": ["KSS-DS-AUTH-R1", "KSS-STS020-AUDIT-R1"],
+      "implementation": ["docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC_AUDIT.md"],
+      "verification": ["STS-020"]
+    },
+    {
+      "feature_id": "STS-F030",
+      "name": "Starter Detailed Spec Freeze",
+      "scope": "IN_SCOPE",
+      "priority": "P0",
+      "status": "VERIFIED",
+      "authority": ["KSS-DS-AUTH-R1", "KSS-STS030-FREEZE-R1", "KSS-DS-SPEC-R1", "KSS-DS-GAPS-R1", "KSS-DS-ACCEPT-R1"],
+      "implementation": [
+        "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC.md",
+        "docs/starter/KYD_SAAS_STARTER_GAP_CLOSURE_MATRIX.md",
+        "docs/starter/KYD_SAAS_STARTER_ACCEPTANCE_MATRIX.md",
+        "docs/starter/KYD_SAAS_STARTER_DETAILED_SPEC_FREEZE.md"
+      ],
+      "verification": ["STS-025", "STS-030"]
     }
   ]
 }

@@ -63,7 +63,7 @@ P2: optional Turnstile; Ads/analytics verification; retained non-Core enablement
 ## Blocking Risks
 
 - Starter implementation/release is blocked by P0 gaps, but the repository audit itself is complete.
-- A-001 cannot be frozen from repository evidence and requires current external provider comparison plus Cloudflare Staging proof.
+- A-001 is frozen as a vendor-neutral PostgreSQL Provider Policy; the vendor remains unpinned and real provider qualification is deferred to implementation/environment validation.
 - Cloudflare deployment integration is absent; this is not evidence of a general Worker incompatibility.
 - No automated test/CI baseline exists, so no application build/provider/browser behavior was verified during audit.
 - Auth Magic Link/trusted-linking and payment replay/atomicity are correctness/security gates, not optional polish.
@@ -72,11 +72,11 @@ P2: optional Turnstile; Ads/analytics verification; retained non-Core enablement
 
 ### Result
 
-`BLOCKED — EXTERNAL FACT VERIFICATION REQUIRED`
+`FROZEN — PostgreSQL Provider Policy R1`
 
-Repository evidence establishes a portable boundary: `postgres` + `drizzle-orm/postgres-js`, PostgreSQL schema/migrations, and generic `DATABASE_URL`, with no provider SDK coupling. It does not establish current vendor pricing, limits, regions, Cloudflare/Hyperdrive support, operations, or real-runtime behavior.
+Repository evidence establishes the frozen portable boundary: PostgreSQL + Drizzle, existing schema/migrations, centralized database access, and generic `DATABASE_URL`, with provider-specific coupling forbidden by default in reusable business/domain code. The default vendor is `UNPINNED` during Starter design.
 
-Before freezing a provider, verify the external checklist in `docs/audit/06_RISK_AND_BLOCKERS.md`: current Worker/Hyperdrive connectivity, TLS/network/pooling/limits, pricing for three isolated environments, regions/latency, GA/SLA/operations, migration/branching/backups/PITR/security, and real Staging migration/read/write/concurrency evidence.
+Provider Qualification is deferred until a real provider/environment is provisioned and before that environment is relied on for release. Hyperdrive is optional and is validated only when selected. The exact stable contract and PQ-01 through PQ-13 qualification gate are frozen in `docs/decisions/A-001_POSTGRES_PROVIDER_POLICY.md`; no vendor bake-off blocks Starter Detailed Spec.
 
 ## A-002 Evidence Summary
 
@@ -114,8 +114,8 @@ Starter implementation must not, without later evidence/authority:
 - freeze ShipAny branding/content as Starter product design;
 - add account deletion or new subscription scope without Product Authority;
 - add an enterprise observability platform or elaborate internal plugin framework;
-- choose A-001 from model memory or an example-file provider comment.
+- pin a default PostgreSQL vendor or require a vendor bake-off during Starter design without a concrete project/operational need.
 
 ## Next Step
 
-The Full Repository Audit is complete after Runtime closeout. Planner/user action is next: resolve A-001 external facts, convert the 19-gap backlog into the Starter Detailed Spec and deterministic implementation Task graph, and provision isolated Cloudflare/provider Staging resources. No Starter implementation Task is created or started by AUD-080.
+The Full Repository Audit is complete. The next planning phase is Kyd SaaS Starter Detailed Spec: convert the 19-gap backlog into the Detailed Spec and deterministic implementation Task graph. Provider qualification and isolated provider/Cloudflare resources are deferred until a real implementation/environment needs them. No Starter implementation Task is created or started here.

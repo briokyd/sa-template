@@ -47,17 +47,17 @@ Preserve existing environment names where feasible. Add a narrow validation/bind
 
 - PostgreSQL/Drizzle uses a generic `DATABASE_URL`; no provider SDK or product-layer vendor coupling was found.
 - The Node path has a singleton pool; the detected Cloudflare path creates a `max: 1`, `prepare: false` client per `db()` call.
-- No Hyperdrive binding/config or real Worker connection test exists. Hyperdrive is an implementation option to verify after A-001, not an automatic requirement.
-- A-001 is `BLOCKED — EXTERNAL FACT VERIFICATION REQUIRED`; repository evidence cannot select a current vendor.
+- No Hyperdrive binding/config or real Worker connection test exists. Hyperdrive is an optional implementation integration and is qualified only when selected.
+- A-001 is `FROZEN — PostgreSQL Provider Policy R1`; the application contract is PostgreSQL + Drizzle + generic `DATABASE_URL`, while the vendor remains `UNPINNED` during Starter design.
 
-Required provider/runtime evidence: migration from a fresh database, repeat migration, read/write, concurrent connection behavior, TLS/network behavior, transaction flows, and optional Hyperdrive routing in Cloudflare Staging.
+When a real provider/environment is selected, Provider Qualification must cover migration, read/write, concurrency, TLS/network behavior, transactions, environment isolation, failure behavior, and optional Hyperdrive routing when applicable. This qualification does not block Starter Detailed Spec or Design Freeze.
 
 ## Blockers
 
 1. `CF-01` P0: missing OpenNext/Wrangler deployment integration.
 2. `CF-02` P0: no isolated Cloudflare Staging environment or real-provider smoke evidence.
 3. `CF-03` P0: no exact-commit Staging-to-Production promotion path.
-4. `CF-04` P0: A-001 needs current external provider verification before a default can be frozen.
+4. `CF-04` P1: real provider/runtime qualification is deferred until a concrete implementation environment is selected; it is not a Starter design blocker.
 5. `CF-05` P1: Worker-sensitive DB/Auth/payment/AI/storage paths remain unverified, not confirmed incompatible.
 
 ## Actions
