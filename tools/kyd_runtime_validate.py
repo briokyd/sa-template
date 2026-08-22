@@ -115,7 +115,13 @@ class V:
             if gid in gm: self.err("RUNTIME_SCHEMA_INVALID",f"duplicate gate_id: {gid}"); continue
             gm[gid]=g
             if g.get("status") not in GATE_STATUS: self.err("RUNTIME_SCHEMA_INVALID",f"{gid}: invalid Gate status")
-            if not isinstance(g.get("evidence",[]),list): self.err("RUNTIME_SCHEMA_INVALID",f"{gid}: evidence must be list")
+            evidence=g.get("evidence",[])
+            if not isinstance(evidence,list):
+                self.err("RUNTIME_SCHEMA_INVALID",f"{gid}: evidence must be list")
+            elif g.get("status")=="PASS" and not evidence:
+                self.err("GATE_FAILURE",f"{gid}: PASS without evidence")
+            elif g.get("status")=="PASS" and any(not isinstance(item,str) or not item.strip() for item in evidence):
+                self.err("GATE_FAILURE",f"{gid}: PASS evidence entries must be non-empty strings")
         return gm
     def task_checks(self):
         ti=self.data.get("task_index")
@@ -182,20 +188,34 @@ class V:
                 if aid not in amap:self.err("AUTHORITY_GAP",f"{fid}: unknown authority: {aid}")
     def trace_checks(self,tm):
         tr=self.data.get("implementation_trace")
-        if not tr:return
+        if not tr:return set()
         traces=tr.get("traces")
-        if not isinstance(traces,list):self.err("RUNTIME_SCHEMA_INVALID","IMPLEMENTATION_TRACE.traces must be list");return
+        if not isinstance(traces,list):
+            self.err("RUNTIME_SCHEMA_INVALID","IMPLEMENTATION_TRACE.traces must be list")
+            return set()
         seen=set()
+        verified_trace_tasks=set()
+        required_fields=("trace_id","source_id","task_id","implementation","verification","evidence","status")
         for x in traces:
             xid=x.get("trace_id") if isinstance(x,dict) else None
             if not xid:self.err("TRACE_GAP","trace_id missing");continue
             if xid in seen:self.err("TRACE_GAP",f"duplicate trace_id: {xid}")
             seen.add(xid)
+            missing=[field for field in required_fields if field not in x]
+            if missing:self.err("TRACE_GAP",f"{xid}: missing required fields {missing}")
+            if not x.get("source_id"):self.err("TRACE_GAP",f"{xid}: source_id must be non-empty")
+            if not x.get("implementation"):self.err("TRACE_GAP",f"{xid}: implementation must be non-empty")
             if x.get("task_id") not in tm:self.err("TRACE_GAP",f"{xid}: unknown task_id {x.get('task_id')}")
             if x.get("status") not in TRACE_STATUS:self.err("TRACE_GAP",f"{xid}: invalid status")
             if x.get("status")=="VERIFIED":
                 if not x.get("verification") or not x.get("evidence"):
                     self.err("TRACE_GAP",f"{xid}: VERIFIED without verification/evidence")
+                elif not missing and x.get("source_id") and x.get("implementation") and x.get("task_id") in tm:
+                    verified_trace_tasks.add(x.get("task_id"))
+        for tid,t in tm.items():
+            if t.get("status")=="VERIFIED" and tid not in verified_trace_tasks:
+                self.err("TRACE_GAP",f"{tid}: VERIFIED task without evidence-bearing VERIFIED trace")
+        return verified_trace_tasks
     def current_task_checks(self,amap,gm,tm,mode):
         cs=self.data.get("current_state")
         if not cs:return

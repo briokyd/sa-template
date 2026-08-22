@@ -8,10 +8,12 @@
   "traces": [
     {
       "trace_id": "AUD-F000-BOOTSTRAP-2026-08-19",
+      "source_id": "AUD-F000",
       "task_id": "AUD-000",
       "feature_id": "AUD-F000",
       "status": "VERIFIED",
       "summary": "Captured a factual repository inventory and verified the Runtime/Audit bootstrap execution path.",
+      "implementation": "Captured a factual repository inventory and verified the Runtime/Audit bootstrap execution path.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -35,10 +37,12 @@
     },
     {
       "trace_id": "AUD-F010-FRAMEWORK-CLOUDFLARE-2026-08-19",
+      "source_id": "AUD-F010",
       "task_id": "AUD-010",
       "feature_id": "AUD-F010",
       "status": "VERIFIED",
       "summary": "Audited framework, deployment entry points, Cloudflare/OpenNext readiness, and environment/configuration architecture without changing application implementation.",
+      "implementation": "Audited framework, deployment entry points, Cloudflare/OpenNext readiness, and environment/configuration architecture without changing application implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -63,10 +67,12 @@
     },
     {
       "trace_id": "AUD-F020-DATABASE-DRIZZLE-2026-08-19",
+      "source_id": "AUD-F020",
       "task_id": "AUD-020",
       "feature_id": "AUD-F020",
       "status": "VERIFIED",
       "summary": "Audited the PostgreSQL, Drizzle, migration, database access, connection, and transaction evidence without changing application or database implementation.",
+      "implementation": "Audited the PostgreSQL, Drizzle, migration, database access, connection, and transaction evidence without changing application or database implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -92,10 +98,12 @@
     },
     {
       "trace_id": "AUD-F030-AUTH-EMAIL-SESSION-2026-08-19",
+      "source_id": "AUD-F030",
       "task_id": "AUD-030",
       "feature_id": "AUD-F030",
       "status": "VERIFIED",
       "summary": "Audited Auth.js providers, identity persistence, session, account/logout, email authentication, and Auth-specific runtime evidence without changing implementation.",
+      "implementation": "Audited Auth.js providers, identity persistence, session, account/logout, email authentication, and Auth-specific runtime evidence without changing implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -121,10 +129,12 @@
     },
     {
       "trace_id": "AUD-F040-PAYMENT-ORDERS-WEBHOOK-2026-08-19",
+      "source_id": "AUD-F040",
       "task_id": "AUD-040",
       "feature_id": "AUD-F040",
       "status": "VERIFIED",
       "summary": "Audited orders, Creem, Stripe, checkout, webhook behavior, provider selection, entitlement, and credits evidence without changing implementation.",
+      "implementation": "Audited orders, Creem, Stripe, checkout, webhook behavior, provider selection, entitlement, and credits evidence without changing implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -150,10 +160,12 @@
     },
     {
       "trace_id": "AUD-F050-OPTIONAL-PLATFORM-2026-08-19",
+      "source_id": "AUD-F050",
       "task_id": "AUD-050",
       "feature_id": "AUD-F050",
       "status": "VERIFIED",
       "summary": "Audited optional platform capabilities, including ads, analytics, technical SEO, i18n, AI, storage/R2 suitability, Turnstile, and related documented surfaces without changing implementation.",
+      "implementation": "Audited optional platform capabilities, including ads, analytics, technical SEO, i18n, AI, storage/R2 suitability, Turnstile, and related documented surfaces without changing implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -180,10 +192,12 @@
     },
     {
       "trace_id": "AUD-F060-UI-FOUNDATION-2026-08-19",
+      "source_id": "AUD-F060",
       "task_id": "AUD-060",
       "feature_id": "AUD-F060",
       "status": "VERIFIED",
       "summary": "Audited UI tokens, primitives, shells, pages, responsive and accessibility source evidence, assets, and A-002 evidence without changing UI or application implementation.",
+      "implementation": "Audited UI tokens, primitives, shells, pages, responsive and accessibility source evidence, assets, and A-002 evidence without changing UI or application implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "python3 tools/kyd_runtime_validate.py --root . --mode closeout => KYD_RUNTIME_VALIDATE: PASS; RUNTIME_STATE_VALID = TRUE",
@@ -210,10 +224,12 @@
     },
     {
       "trace_id": "AUD-F070-TEST-SECURITY-RELEASE-2026-08-19",
+      "source_id": "AUD-F070",
       "task_id": "AUD-070",
       "feature_id": "AUD-F070",
       "status": "VERIFIED",
       "summary": "Audited tests, security, logging, build, deployment, CI, and release readiness without changing application, test, build, deployment, or configuration implementation.",
+      "implementation": "Audited tests, security, logging, build, deployment, CI, and release readiness without changing application, test, build, deployment, or configuration implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "Repository-wide scan found no test framework, test script, test file, CI workflow, Cloudflare/OpenNext/Wrangler configuration, or deployment script",
@@ -239,10 +255,12 @@
     },
     {
       "trace_id": "AUD-F080-FINAL-SYNTHESIS-2026-08-19",
+      "source_id": "AUD-F080",
       "task_id": "AUD-080",
       "feature_id": "AUD-F080",
       "status": "VERIFIED",
       "summary": "Synthesized all verified repository workstreams into the nine registered final audit outputs without changing application/product implementation.",
+      "implementation": "Synthesized all verified repository workstreams into the nine registered final audit outputs without changing application/product implementation.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "All AUD-000 through AUD-070 Task and feature dependencies were VERIFIED before synthesis",
@@ -282,6 +300,7 @@
       "task_id": "AUD-080",
       "status": "VERIFIED",
       "summary": "Superseded the uncommitted A001 provider bake-off path and froze A-001 as a vendor-neutral PostgreSQL Provider Policy without changing application code.",
+      "implementation": "Superseded the uncommitted A001 provider bake-off path and froze A-001 as a vendor-neutral PostgreSQL Provider Policy without changing application code.",
       "verification": [
         "git status and git history confirmed the A001-010/A001-020/A001-030 task graph and Neon validation artifacts were uncommitted detour work",
         "The detour task entries, validation Authority registration, and Neon evidence artifacts were removed without rewriting Git history",
@@ -308,10 +327,12 @@
     },
     {
       "trace_id": "STS-F010-DETAILED-SPEC-2026-08-20",
+      "source_id": "STS-F010",
       "task_id": "STS-010",
       "feature_id": "STS-F010",
       "status": "VERIFIED",
       "summary": "Starter Detailed Spec authored from sa-template audit evidence. No application implementation changed. Next task is fresh-context Completeness / Ambiguity Audit.",
+      "implementation": "Starter Detailed Spec authored from sa-template audit evidence. No application implementation changed. Next task is fresh-context Completeness / Ambiguity Audit.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "The master Detailed Spec contains 32 required non-empty sections and 32 material capability contracts",
@@ -344,10 +365,12 @@
     },
     {
       "trace_id": "STS-F020-DETAILED-SPEC-AUDIT-2026-08-20",
+      "source_id": "STS-F020",
       "task_id": "STS-020",
       "feature_id": "STS-F020",
       "status": "BLOCKED",
       "summary": "Independently audited the Starter Detailed Spec and blocked freeze because one BLOCKER and eight MAJOR completeness/ambiguity findings remain. No application implementation changed.",
+      "implementation": "Independently audited the Starter Detailed Spec and blocked freeze because one BLOCKER and eight MAJOR completeness/ambiguity findings remain. No application implementation changed.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "All 32 capability contracts and 32 one-to-one acceptance records were independently audited",
@@ -375,9 +398,11 @@
     },
     {
       "trace_id": "STS-021-FINDINGS-RESOLUTION-2026-08-20",
+      "source_id": "KSS-STS021-RESOLUTION-R1",
       "task_id": "STS-021",
       "status": "VERIFIED",
       "summary": "STS-021 produced a findings resolution/decision packet. No candidate Starter design corrections were applied. No application code changed. Awaiting planner/user decisions before correction.",
+      "implementation": "STS-021 produced a findings resolution/decision packet. No candidate Starter design corrections were applied. No application code changed. Awaiting planner/user decisions before correction.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "The Resolution Packet contains exactly one inventory row for F-001 through F-009",
@@ -406,9 +431,11 @@
     },
     {
       "trace_id": "STS-021A-EXISTING-IMPLEMENTATION-MAPPING-2026-08-20",
+      "source_id": "KPS-CAP-REUSE-R1",
       "task_id": "STS-021A",
       "status": "VERIFIED",
       "summary": "STS-021A mapped STS-020 findings to actual sa-template implementation. No candidate design or application code was modified. Remaining decisions must be based on proven implementation gaps, not specification ambiguity alone.",
+      "implementation": "STS-021A mapped STS-020 findings to actual sa-template implementation. No candidate design or application code was modified. Remaining decisions must be based on proven implementation gaps, not specification ambiguity alone.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "F-001 through F-009 each have exact source/config/evidence paths, existing implementation status, minimum reuse action, and reclassification",
@@ -436,9 +463,11 @@
     },
     {
       "trace_id": "STS-022-DETAILED-SPEC-CORRECTION-2026-08-20",
+      "source_id": "KSS-STS022-CORRECTION-R1",
       "task_id": "STS-022",
       "status": "VERIFIED",
       "summary": "STS-022 corrected F-001 through F-009 using mapped sa-template implementation and frozen decisions. No application code changed. Fresh-context Completeness / Ambiguity re-audit is required before Freeze.",
+      "implementation": "STS-022 corrected F-001 through F-009 using mapped sa-template implementation and frozen decisions. No application code changed. Fresh-context Completeness / Ambiguity re-audit is required before Freeze.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "F-001 through F-009 corrections are synchronized across the Detailed Spec, Gap Closure Matrix, and Acceptance Matrix",
@@ -473,9 +502,11 @@
     },
     {
       "trace_id": "STS-023-DETAILED-SPEC-REAUDIT-2026-08-20",
+      "source_id": "KSS-STS020-AUDIT-R1",
       "task_id": "STS-023",
       "status": "BLOCKED",
       "summary": "STS-023 independently re-audited the corrected Starter design and returned FAIL — CORRECTION REQUIRED. Four original findings remain partial, one new MAJOR and one new MINOR were found, and STS-030 remains NOT_READY. No candidate design or application implementation file changed.",
+      "implementation": "STS-023 independently re-audited the corrected Starter design and returned FAIL — CORRECTION REQUIRED. Four original findings remain partial, one new MAJOR and one new MINOR were found, and STS-030 remains NOT_READY. No candidate design or application implementation file changed.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "Original finding closure: F-001/F-003/F-004/F-006 PARTIAL; F-002/F-005/F-007/F-008/F-009 CLOSED",
@@ -503,9 +534,11 @@
     },
     {
       "trace_id": "STS-024-RESIDUAL-DESIGN-CORRECTION-2026-08-20",
+      "source_id": "KSS-STS024-RESIDUAL-CORRECTION-R1",
       "task_id": "STS-024",
       "status": "VERIFIED",
       "summary": "STS-024 closed residual STS-023 design ambiguities through bounded documentation correction. Capability-first reuse was preserved, no application code changed, and fresh-context STS-025 re-audit is required before STS-030.",
+      "implementation": "STS-024 closed residual STS-023 design ambiguities through bounded documentation correction. Capability-first reuse was preserved, no application code changed, and fresh-context STS-025 re-audit is required before STS-030.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "F-001 now freezes terminal states, duplicate/stale success acknowledgements, invalid-request rejection, and retryable rollback without a new transition service",
@@ -540,9 +573,11 @@
     },
     {
       "trace_id": "STS-025-FRESH-CONTEXT-REAUDIT-2026-08-20",
+      "source_id": "KSS-STS020-AUDIT-R1",
       "task_id": "STS-025",
       "status": "VERIFIED",
       "summary": "STS-025 independently re-audited the STS-024-corrected Starter design and returned PASS. All residual and regression findings are closed, no implementation-affecting ambiguity remains, and STS-030 is READY but was not executed. No candidate design or application implementation file changed.",
+      "implementation": "STS-025 independently re-audited the STS-024-corrected Starter design and returned PASS. All residual and regression findings are closed, no implementation-affecting ambiguity remains, and STS-030 is READY but was not executed. No candidate design or application implementation file changed.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "F-001, F-003, F-004, F-006, R-001, and R-002 independently verified CLOSED",
@@ -571,10 +606,12 @@
     },
     {
       "trace_id": "STS-030-DETAILED-SPEC-FREEZE-2026-08-20",
+      "source_id": "STS-F030",
       "task_id": "STS-030",
       "feature_id": "STS-F030",
       "status": "VERIFIED",
       "summary": "STS-030 froze the independently audited Kyd SaaS Starter Detailed Spec R1 baseline with exact SHA-256 provenance. STS-025 PASS was verified, 32 capabilities and 19 gaps were frozen, capability-first reuse remains PASS, no implementation-affecting ambiguity or new abstraction remains, and application implementation is unchanged and unauthorized.",
+      "implementation": "STS-030 froze the independently audited Kyd SaaS Starter Detailed Spec R1 baseline with exact SHA-256 provenance. STS-025 PASS was verified, 32 capabilities and 19 gaps were frozen, capability-first reuse remains PASS, no implementation-affecting ambiguity or new abstraction remains, and application implementation is unchanged and unauthorized.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
         "STS-025 prerequisite result PASS and Runtime status VERIFIED",

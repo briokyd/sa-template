@@ -18,6 +18,17 @@
       "purpose": "Frozen Runtime V1 execution rules"
     },
     {
+      "authority_id": "KPR-V1-R1-CONFORMANCE-20260822",
+      "area": "runtime",
+      "name": "Kyd Project Runtime V1 R1 Conformance Evidence 2026-08-22",
+      "path": "docs/kyd-runtime/conformance/KYD_PROJECT_RUNTIME_V1_R1_CONFORMANCE_20260822.md",
+      "kind": "EVIDENCE",
+      "version": "R1",
+      "status": "ACTIVE",
+      "sha256": "10fb54567c6ea1c43f6614fcd87d76f0f3b1b8616689f0fed4a9475f11944105",
+      "purpose": "Bounded validator, trace-schema, fixture, and fresh-session conformance evidence for later controlled Runtime R1 reconciliation"
+    },
+    {
       "authority_id": "KPS-DP-R3",
       "area": "delivery-protocol",
       "name": "Kyd Delivery Protocol R3",
