@@ -18,6 +18,39 @@
       "purpose": "Frozen Runtime V1 execution rules"
     },
     {
+      "authority_id": "KPS-DP-R3",
+      "area": "delivery-protocol",
+      "name": "Kyd Delivery Protocol R3",
+      "path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_R3.md",
+      "kind": "AUTHORITY",
+      "version": "R3",
+      "status": "FROZEN",
+      "sha256": "5dddfe4baf827be59e3b730a45642503d74b5913131606f2b60f6a2d4ec7bea0",
+      "purpose": "Normative generic project lifecycle, Gate, freeze, release/delivery, recovery, and closeout rules"
+    },
+    {
+      "authority_id": "KPS-DP-PLAYBOOK-R3",
+      "area": "delivery-protocol",
+      "name": "Kyd Delivery Protocol Execution Playbook R3",
+      "path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_EXECUTION_PLAYBOOK_R3.md",
+      "kind": "AUTHORITY",
+      "version": "R3",
+      "status": "FROZEN",
+      "sha256": "e4039755860173a5bfb409f737710be0b9ad0e8a5654e22329ff23970372a02c",
+      "purpose": "Operational role assignment, independent review, evidence, registration, and lifecycle handoff procedure"
+    },
+    {
+      "authority_id": "KPS-DP-FREEZE-R3",
+      "area": "delivery-protocol",
+      "name": "Kyd Delivery Protocol R3 Freeze Record",
+      "path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_R3_FREEZE.md",
+      "kind": "EVIDENCE",
+      "version": "R3",
+      "status": "ACTIVE",
+      "sha256": "04a528f43f94aff309a0bf45709a8d54fb3eb94b5f108f60d5ebd8cc3a5edf0e",
+      "purpose": "User authorization, independent review provenance, exact hashes, Runtime boundary, validation evidence, and freeze declaration"
+    },
+    {
       "authority_id": "AUDIT-001",
       "area": "audit",
       "name": "sa-template Full Repository Audit Authority",
