@@ -21,7 +21,9 @@
       "gate_id": "RUNTIME_V1_FREEZE",
       "status": "PASS",
       "evidence": [
-        "RUNTIME-001"
+        "RUNTIME-001",
+        "KPR-V1-R1-CONFORMANCE-20260822",
+        "KPR-V1-R1-FREEZE-20260822"
       ]
     },
     {

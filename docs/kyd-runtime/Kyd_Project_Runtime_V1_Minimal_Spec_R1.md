@@ -2,8 +2,10 @@
 
 > **System Layer:** C — Kyd Project Runtime  
 > **Purpose:** Deterministic, index-driven execution for Codex sessions  
-> **Status:** R1 candidate after Completeness / Ambiguity Audit R0  
+> **Status:** FROZEN — Runtime V1 R1 conformance verified
 > **Date:** 2026-08-19  
+> **Controlled Reconciliation Date:** 2026-08-22
+> **Conformance Evidence:** `KPR-V1-R1-CONFORMANCE-20260822`
 > **Source Decisions:** RT-001 ～ RT-007 FROZEN  
 > **Planning Memory:** `Kyd_Project_System_完整合并备忘录` is NOT a normal Codex input.
 
@@ -1175,12 +1177,21 @@ FROZEN
 R0 Audit Corrections:
 INTEGRATED
 
-Candidate Freeze:
-PENDING CONFORMANCE TEST + R1 AUDIT
+Runtime Alignment Audit:
+PASS — KPS-RT-001
 
-Next:
-Build/test Runtime Template Pack R1
-→ Re-run Completeness / Ambiguity Audit
-→ Runtime V1 Minimal Freeze
-→ sa-template Full Repository Audit
+Runtime Conformance Repair / Evidence:
+PASS — KPS-RT-002 / KPR-V1-R1-CONFORMANCE-20260822
+
+Freeze Status:
+FROZEN — R1
+
+Controlled Reconciliation Date:
+2026-08-22
+
+Semantic / Architecture Change:
+NONE
+
+First Real Use:
+sa-template Full Repository Audit — COMPLETE
 ```
