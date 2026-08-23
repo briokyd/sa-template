@@ -6,7 +6,7 @@
   "project": "sa-template",
   "runtime_version": "KPR-V1",
   "task_id": "BS-IMPL-020",
-  "status": "READY",
+  "status": "IMPLEMENTED",
   "contract": {
     "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
     "depends_on": [
@@ -100,8 +100,17 @@
       "Run Runtime closeout validation before marking BS-IMPL-020 IMPLEMENTED/VERIFIED."
     ]
   },
-  "verification_evidence": []
+  "verification_evidence": [
+    "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+    "Positive initialization generated all 12 mandatory paths",
+    "Pinned source and target SHA-256 verification PASS",
+    "Generated PROJECT_INDEX routing and Runtime zero-state checks PASS",
+    "Generated target Runtime structure and closeout validation PASS",
+    "Generated target execution rejection at current_task=NONE PASS",
+    "Managed-path collision fail-closed verification PASS",
+    "git diff --check PASS"
+  ]
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-BS-IMPL-020 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation has not started.
+BS-IMPL-020 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation is complete and awaits independent verification.

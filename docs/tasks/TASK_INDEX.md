@@ -1499,7 +1499,7 @@
       "task_id": "BS-IMPL-020",
       "title": "Generic Bootstrap Initializer and Zero-State Generation",
       "type": "IMPLEMENTATION",
-      "status": "READY",
+      "status": "IMPLEMENTED",
       "contract": {
         "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
         "depends_on": [

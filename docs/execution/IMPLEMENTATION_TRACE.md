@@ -681,6 +681,42 @@
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ]
+    },
+    {
+      "trace_id": "BS-IMPL-020-GENERIC-INITIALIZER-2026-08-23",
+      "source_id": "KPS-BS-PACK-SPEC-R3",
+      "task_id": "BS-IMPL-020",
+      "status": "IMPLEMENTED",
+      "summary": "Implemented and locally verified the generic Bootstrap initializer. Independent verification remains required before BS-IMPL-020 can become VERIFIED.",
+      "implementation": "Added a standard-library Python CLI that validates the local pinned source manifest and source hashes, generates the exact Kyd Runtime zero-state, writes managed paths exclusively with rollback, verifies post-write hashes, and records Bootstrap provenance as PENDING.",
+      "verification": [
+        "python3 tools/kyd_runtime_validate.py --root . --mode execution before implementation => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
+        "Python source compilation and deterministic --help interface => PASS",
+        "Positive initialization at /tmp/bs-impl-020-final-positive.co53pk => KYD_BOOTSTRAP_INIT: COMPLETE",
+        "Mandatory generated paths 12/12; exact PROJECT_INDEX static/dynamic route set 9/9 => PASS",
+        "Pinned Protocol, Playbook, Runtime, and Runtime validator target SHA-256 checks => PASS",
+        "CURRENT_STATE, TASK_INDEX, CURRENT_TASK sentinel, FEATURE_MATRIX, IMPLEMENTATION_TRACE, and PENDING manifest zero-state checks => PASS",
+        "Generated dynamic-file stale-state scan => PASS",
+        "Generated target Runtime structure and closeout modes => PASS",
+        "Generated target Runtime execution mode rejected at current_task=NONE => expected PASS",
+        "Protected docs/tasks collision exited 2 before any managed file creation => PASS",
+        "git diff --check => PASS",
+        "Source repository Runtime structure and closeout modes => PASS"
+      ],
+      "evidence": [
+        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+        "tools/kyd-bootstrap/init_project.py SHA-256 64f027806c69c02a9907fc091da078871da0ec8875243e8ce7cc5af26701bfa2",
+        "Positive target /tmp/bs-impl-020-final-positive.co53pk",
+        "Collision target /tmp/bs-impl-020-final-collision.qHYgig"
+      ],
+      "changed_files": [
+        "tools/kyd-bootstrap/init_project.py",
+        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+        "docs/CURRENT_STATE.md",
+        "docs/tasks/TASK_INDEX.md",
+        "docs/tasks/CURRENT_TASK.md",
+        "docs/execution/IMPLEMENTATION_TRACE.md"
+      ]
     }
   ]
 }
