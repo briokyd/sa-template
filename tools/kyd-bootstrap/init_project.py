@@ -209,12 +209,12 @@ def project_index_data(
     static_names = {
         "KPS-DP-R3": "Kyd Delivery Protocol R3",
         "KPS-DP-PLAYBOOK-R3": "Kyd Delivery Protocol Execution Playbook R3",
-        "RUNTIME-001": "Kyd Project Runtime V1 Minimal Spec R1",
+        "RUNTIME-001": "Kyd Project Runtime V1 R1",
     }
     static_purposes = {
-        "KPS-DP-R3": "Frozen generic project delivery lifecycle Authority",
-        "KPS-DP-PLAYBOOK-R3": "Frozen agent-neutral delivery execution playbook",
-        "RUNTIME-001": "Frozen deterministic repository execution Runtime",
+        "KPS-DP-R3": "Frozen project lifecycle, Gate, freeze, release, and closeout rules",
+        "KPS-DP-PLAYBOOK-R3": "Frozen operational role, review, registration, and evidence procedures",
+        "RUNTIME-001": "Frozen repository execution eligibility, Authority routing, dependency, scope, and verification rules",
     }
     authorities: list[dict[str, Any]] = []
     for asset in assets:
@@ -224,9 +224,7 @@ def project_index_data(
         authorities.append(
             {
                 "authority_id": asset_id,
-                "area": "runtime"
-                if asset_id == "RUNTIME-001"
-                else "delivery-protocol",
+                "area": "execution",
                 "name": static_names[asset_id],
                 "path": asset["target_path"],
                 "kind": "AUTHORITY",
@@ -244,10 +242,10 @@ def project_index_data(
                 "area": "execution",
                 "name": "Current State",
                 "path": "docs/CURRENT_STATE.md",
-                "kind": "AUTHORITY",
+                "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Current repository execution truth and task pointer",
             },
             {
@@ -255,10 +253,10 @@ def project_index_data(
                 "area": "product",
                 "name": "Feature Matrix",
                 "path": "docs/product/FEATURE_MATRIX.md",
-                "kind": "AUTHORITY",
+                "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Project feature state initialized without product claims",
             },
             {
@@ -266,10 +264,10 @@ def project_index_data(
                 "area": "execution",
                 "name": "Task Index",
                 "path": "docs/tasks/TASK_INDEX.md",
-                "kind": "AUTHORITY",
+                "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Registered project task contracts and dependency state",
             },
             {
@@ -277,10 +275,10 @@ def project_index_data(
                 "area": "execution",
                 "name": "Current Task",
                 "path": "docs/tasks/CURRENT_TASK.md",
-                "kind": "AUTHORITY",
+                "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Current task boundary or canonical no-task sentinel",
             },
             {
@@ -291,7 +289,7 @@ def project_index_data(
                 "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Project implementation and verification trace evidence",
             },
             {
@@ -302,7 +300,7 @@ def project_index_data(
                 "kind": "EVIDENCE",
                 "version": "v1",
                 "status": "ACTIVE",
-                "sha256": None,
+                "sha256": "",
                 "purpose": "Pinned Bootstrap provenance and validation state",
             },
         ]

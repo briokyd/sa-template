@@ -717,6 +717,38 @@
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ]
+    },
+    {
+      "trace_id": "BS-CORR-020-PROJECT-INDEX-METADATA-2026-08-23",
+      "source_id": "KPS-BS-PACK-SPEC-R3",
+      "task_id": "BS-CORR-020",
+      "status": "IMPLEMENTED",
+      "summary": "Corrected only the generated PROJECT_INDEX metadata defect found by BS-VER-020. BS-IMPL-020 remains IMPLEMENTED and BS-IMPL-030 remains NOT_READY pending independent re-verification.",
+      "implementation": "Updated project_index_data() so the three static Authority entries exactly match the approved Section 6 metadata and all six dynamic/provenance entries use EVIDENCE, v1, ACTIVE, and an empty SHA-256 string.",
+      "verification": [
+        "Runtime execution validation after BS-CORR-020 registration => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
+        "Fresh initialization at /tmp/bs-corr-020-final.DpaANC => KYD_BOOTSTRAP_INIT: COMPLETE",
+        "Static PROJECT_INDEX metadata field-for-field comparison => PASS 3/3",
+        "Dynamic PROJECT_INDEX kind/version/status/sha256 comparison => PASS 6/6",
+        "PROJECT_INDEX route resolution => PASS 9/9",
+        "Generated target Runtime structure and closeout modes => PASS",
+        "Generated target Runtime execution rejected at current_task=NONE, exit 2 => expected PASS",
+        "Python source compilation and git diff --check => PASS",
+        "Source repository Runtime structure and closeout modes => PASS"
+      ],
+      "evidence": [
+        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+        "tools/kyd-bootstrap/init_project.py SHA-256 335d893385450dea84423a281dedfa5c48eeb43590287c0cfc66e839415ce98e",
+        "BS-VER-020 PROJECT_INDEX metadata finding corrected"
+      ],
+      "changed_files": [
+        "tools/kyd-bootstrap/init_project.py",
+        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+        "docs/CURRENT_STATE.md",
+        "docs/tasks/TASK_INDEX.md",
+        "docs/tasks/CURRENT_TASK.md",
+        "docs/execution/IMPLEMENTATION_TRACE.md"
+      ]
     }
   ]
 }
