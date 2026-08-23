@@ -838,6 +838,38 @@
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ]
+    },
+    {
+      "trace_id": "KPS-BS-DOC-002-README-QUICKSTART-2026-08-23",
+      "source_id": "KPS-BS-PACK-SPEC-R3",
+      "task_id": "KPS-BS-DOC-002",
+      "status": "VERIFIED",
+      "summary": "Replaced the root ShipAny README with a concise Chinese Kyd Bootstrap quickstart and verified that repository-local documentation task state does not pollute generated projects.",
+      "implementation": "Registered a bounded repository-local documentation task, replaced README.md with actual initializer and validator commands, documented absolute source/target paths, zero-task semantics, Codex handoff, and existing-repository limitations, then restored the source repository no-task state.",
+      "verification": [
+        "Runtime structure and execution validation after task registration => PASS; EXECUTION_ALLOWED = TRUE",
+        "Initializer, Bootstrap validator, and Runtime validator --help output matched documented commands",
+        "README starts with Kyd Project System, contains only Bootstrap quickstart scope, and contains no ShipAny content",
+        "Fresh target /tmp/kps-bs-doc-002-nonpollution.HKgr6v initialized with Bootstrap validation PASS",
+        "Generated CURRENT_STATE.current_task=NONE, TASK_INDEX tasks=[], canonical CURRENT_TASK sentinel, FEATURE_MATRIX features=[], and IMPLEMENTATION_TRACE traces=[]",
+        "Generated project contains no KPS-BS-DOC-002 or source task history",
+        "Generated Runtime structure/closeout PASS and execution rejected at current_task=NONE as expected",
+        "Bootstrap implementation source, Runtime validator, frozen Authorities, Starter, and application source unchanged",
+        "git diff --check and source Runtime structure/closeout validation => PASS"
+      ],
+      "evidence": [
+        "README.md",
+        "Pre-step HEAD d0668f698ba66b8b0f4ccf61601ad10406cd8219",
+        "Fresh non-pollution project ID kps-bs-doc-002-clean-target",
+        "KPS-BS-DOC-002 verification decision: VERIFIED"
+      ],
+      "changed_files": [
+        "README.md",
+        "docs/CURRENT_STATE.md",
+        "docs/tasks/TASK_INDEX.md",
+        "docs/tasks/CURRENT_TASK.md",
+        "docs/execution/IMPLEMENTATION_TRACE.md"
+      ]
     }
   ]
 }

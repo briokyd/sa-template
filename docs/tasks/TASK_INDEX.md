@@ -1866,6 +1866,87 @@
           "Run Runtime closeout validation before marking BS-IMPL-040 VERIFIED."
         ]
       }
+    },
+    {
+      "task_id": "KPS-BS-DOC-002",
+      "title": "Replace Root README with Kyd Bootstrap Quickstart",
+      "type": "DOCUMENTATION",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Replace ShipAny root README content with a Kyd-owned new-project Bootstrap initialization guide.",
+        "depends_on": [],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KPS-BS-PACK-SPEC-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "RUNTIME-001",
+              "version": "R1"
+            }
+          ],
+          "reference": [
+            {
+              "authority_id": "KPS-BS-R3-E2E-VERIFICATION",
+              "version": "R3"
+            }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "README.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [
+            "Repository-local documentation task state and verification evidence"
+          ],
+          "api": [],
+          "other": [
+            "Disposable fresh Bootstrap target used only for non-pollution verification"
+          ]
+        },
+        "shared_resources": [
+          "Root README",
+          "Runtime task registration and closeout state"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Replace README.md completely with the practical Kyd Bootstrap quickstart.",
+          "Record repository-local Runtime registration, verification evidence, and closeout state for KPS-BS-DOC-002 only."
+        ],
+        "forbidden_changes": [
+          "Modify tools/kyd-bootstrap/**, tools/kyd_bootstrap_validate.py, or tools/kyd_runtime_validate.py.",
+          "Modify frozen Protocol, Playbook, Runtime, or Bootstrap Spec Authorities.",
+          "Modify Bootstrap generated zero-state behavior or copy KPS-BS-DOC-002 into generated projects.",
+          "Modify Starter/application/package/deployment files.",
+          "Create another implementation or documentation task."
+        ],
+        "acceptance": [
+          "README.md contains only the Kyd Project System new-project Bootstrap quickstart scope and no ShipAny content.",
+          "README commands exactly match the repository Bootstrap and validator CLIs.",
+          "README distinguishes the source Kyd repository from the target project and recommends absolute paths.",
+          "README documents post-Bootstrap validation, expected zero-task execution rejection, Codex handoff, and existing-repository limitations.",
+          "A fresh generated project has current_task=NONE, empty TASK_INDEX and IMPLEMENTATION_TRACE, canonical CURRENT_TASK sentinel, and Bootstrap validation PASS.",
+          "No generated project file contains KPS-BS-DOC-002 or current template repository task history.",
+          "Bootstrap implementation source and frozen Authorities remain unchanged."
+        ],
+        "verification": [
+          "Run --help for the initializer, Bootstrap validator, and Runtime validator and verify README syntax against the output.",
+          "Verify README begins with Kyd Project System and contains no ShipAny branding or content.",
+          "Run the real initializer against a fresh disposable target.",
+          "Verify generated CURRENT_STATE.current_task=NONE, TASK_INDEX tasks=[], canonical CURRENT_TASK sentinel, FEATURE_MATRIX features=[], and IMPLEMENTATION_TRACE traces=[].",
+          "Verify no generated file contains KPS-BS-DOC-002 or inherited source-project task history.",
+          "Run the generated target Bootstrap validator and require PASS.",
+          "Verify Bootstrap source and frozen Authority hashes remain unchanged.",
+          "Run git diff --check and source Runtime structure/closeout validation."
+        ]
+      }
     }
   ]
 }
@@ -1900,3 +1981,5 @@ BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
 ```
 
 BS-IMPL-010, BS-IMPL-020, BS-IMPL-030, and BS-IMPL-040 are VERIFIED. The registered Bootstrap implementation task graph is complete.
+
+KPS-BS-DOC-002 is VERIFIED as repository-local documentation history. It is not part of generated Bootstrap zero-state.
