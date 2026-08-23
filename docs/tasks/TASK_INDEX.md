@@ -1773,7 +1773,7 @@
       "task_id": "BS-IMPL-040",
       "title": "Independent End-to-End Bootstrap Verification",
       "type": "VERIFICATION",
-      "status": "READY",
+      "status": "VERIFIED",
       "contract": {
         "goal": "Independently verify the completed Bootstrap Pack against every frozen acceptance requirement using a real disposable new-project initialization, without modifying implementation source.",
         "depends_on": [
@@ -1899,4 +1899,4 @@ The Planner-approved Bootstrap implementation sequence is registered as:
 BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
 ```
 
-BS-IMPL-010, BS-IMPL-020, and BS-IMPL-030 are VERIFIED. BS-IMPL-040 is READY for independent end-to-end verification.
+BS-IMPL-010, BS-IMPL-020, BS-IMPL-030, and BS-IMPL-040 are VERIFIED. The registered Bootstrap implementation task graph is complete.
