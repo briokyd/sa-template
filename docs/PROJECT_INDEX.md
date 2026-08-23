@@ -73,6 +73,28 @@
       "purpose": "User authorization, independent review provenance, exact hashes, Runtime boundary, validation evidence, and freeze declaration"
     },
     {
+      "authority_id": "KPS-BS-PACK-SPEC-R3",
+      "area": "bootstrap",
+      "name": "Kyd Project Bootstrap Pack Bounded Packaging Specification R3",
+      "path": "docs/bootstrap/KYD_PROJECT_BOOTSTRAP_PACK_PACKAGING_SPEC_R3.md",
+      "kind": "AUTHORITY",
+      "version": "R3",
+      "status": "FROZEN",
+      "sha256": "3d86588d1f0f2d8c0b94279540220558166a5ca6fee8b27b2929e7b12d316caa",
+      "purpose": "Frozen generic project bootstrap installation, zero-state generation, control-asset pinning, validation, and static/dynamic separation rules"
+    },
+    {
+      "authority_id": "KPS-BS-PACK-FREEZE-R3",
+      "area": "bootstrap",
+      "name": "Kyd Project Bootstrap Pack Packaging Specification R3 Freeze Record",
+      "path": "docs/bootstrap/KYD_PROJECT_BOOTSTRAP_PACK_PACKAGING_SPEC_R3_FREEZE.md",
+      "kind": "EVIDENCE",
+      "version": "R3",
+      "status": "ACTIVE",
+      "sha256": "df389d3c28b544aba63b40328652b85832c2a4ce0c2ae68bb07a448b6d60d5ee",
+      "purpose": "User authorization, independent review, candidate provenance, final integrity hashes, validation evidence, and Bootstrap specification freeze declaration"
+    },
+    {
       "authority_id": "AUDIT-001",
       "area": "audit",
       "name": "sa-template Full Repository Audit Authority",
