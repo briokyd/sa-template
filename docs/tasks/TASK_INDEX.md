@@ -1408,6 +1408,382 @@
           "Review git diff --name-only for design-only scope"
         ]
       }
+    },
+    {
+      "task_id": "BS-IMPL-010",
+      "title": "Bootstrap Source Manifest and Agent-Neutral Entry Template",
+      "type": "IMPLEMENTATION",
+      "status": "READY",
+      "contract": {
+        "goal": "Create the minimal reusable Bootstrap source manifest and universal agent-neutral AGENTS.md source template required by the frozen Bootstrap Pack specification, without implementing project initialization yet.",
+        "depends_on": [],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KPS-BS-PACK-SPEC-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "RUNTIME-001",
+              "version": "R1"
+            }
+          ],
+          "reference": [
+            {
+              "authority_id": "KPS-DP-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "KPS-DP-PLAYBOOK-R3",
+              "version": "R3"
+            }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+            "tools/kyd-bootstrap/templates/AGENTS.md",
+            "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [
+            "Bootstrap pinned-source manifest metadata"
+          ],
+          "api": [],
+          "other": []
+        },
+        "shared_resources": [
+          "Bootstrap source manifest",
+          "Bootstrap AGENTS source template",
+          "Runtime task closeout state"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Create tools/kyd-bootstrap/bootstrap_pack_r3.json with exact frozen source identities, versions, source paths, target paths, and hashes.",
+          "Create tools/kyd-bootstrap/templates/AGENTS.md as an agent-neutral universal repository entry contract.",
+          "Record task-scoped implementation/verification evidence and normal Runtime task closeout state only."
+        ],
+        "forbidden_changes": [
+          "Modify current repository root AGENTS.md.",
+          "Modify frozen Delivery Protocol R3, Execution Playbook R3, Runtime R1, or Bootstrap Pack Spec R3.",
+          "Modify tools/kyd_runtime_validate.py.",
+          "Modify current project product/task/history content except normal Runtime task status/trace closeout for BS-IMPL-010.",
+          "Modify Starter/application/package/deployment files.",
+          "Introduce Codex-, ChatGPT-, model-, vendor-, AUD-, STS-, or sa-template-specific normative bindings into the generated AGENTS source."
+        ],
+        "acceptance": [
+          "bootstrap_pack_r3.json parses deterministically.",
+          "Manifest pins KPS-DP-R3, KPS-DP-PLAYBOOK-R3, RUNTIME-001 and tools/kyd_runtime_validate.py to exact source paths and exact hashes.",
+          "Runtime validator manifest hash equals aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+          "Manifest contains no mutable latest resolution.",
+          "AGENTS source implements the frozen always-read chain and repository-first/deny-by-default rules.",
+          "AGENTS source is agent-neutral and contains no source-project history/bindings.",
+          "Only declared touch paths and normal Runtime closeout records change."
+        ],
+        "verification": [
+          "Parse bootstrap_pack_r3.json using Python standard library JSON parser.",
+          "Recompute SHA-256 for every pinned frozen Authority and Runtime validator source and compare with manifest.",
+          "Run targeted required/prohibited-clause checks on AGENTS source.",
+          "Run git diff --check.",
+          "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md.",
+          "Run Runtime closeout validation before marking BS-IMPL-010 IMPLEMENTED/VERIFIED."
+        ]
+      }
+    },
+    {
+      "task_id": "BS-IMPL-020",
+      "title": "Generic Bootstrap Initializer and Zero-State Generation",
+      "type": "IMPLEMENTATION",
+      "status": "NOT_READY",
+      "contract": {
+        "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
+        "depends_on": [
+          "BS-IMPL-010"
+        ],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KPS-BS-PACK-SPEC-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "RUNTIME-001",
+              "version": "R1"
+            }
+          ],
+          "reference": []
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "tools/kyd-bootstrap/init_project.py",
+            "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [
+            "Generated Runtime zero-state",
+            "Generated PROJECT_INDEX baseline",
+            "Generated Bootstrap provenance manifest"
+          ],
+          "api": [],
+          "other": [
+            "Disposable temporary target repositories used only for verification"
+          ]
+        },
+        "shared_resources": [
+          "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+          "tools/kyd-bootstrap/templates/AGENTS.md",
+          "Bootstrap generated-project path contract",
+          "Runtime task closeout state"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Create tools/kyd-bootstrap/init_project.py using Python standard library.",
+          "Generate the mandatory new-project file set defined by KPS-BS-PACK-SPEC-R3.",
+          "Copy exact pinned bytes for Protocol R3, Playbook R3, Runtime R1, and Runtime validator.",
+          "Generate deterministic PROJECT_INDEX, CURRENT_STATE, TASK_INDEX, CURRENT_TASK sentinel, FEATURE_MATRIX, IMPLEMENTATION_TRACE, and KYD_BOOTSTRAP_MANIFEST.json zero-state.",
+          "Implement fail-closed controlled-path collision handling.",
+          "Record task-scoped evidence and normal Runtime task closeout state."
+        ],
+        "forbidden_changes": [
+          "Modify any frozen Authority source.",
+          "Modify tools/kyd_runtime_validate.py.",
+          "Modify current repository root AGENTS.md or current project dynamic state/history except normal Runtime task closeout for BS-IMPL-020.",
+          "Implement Bootstrap-specific validator logic in this task.",
+          "Record final Bootstrap PASS in KYD_BOOTSTRAP_MANIFEST.json.",
+          "Silently overwrite an existing managed-project control path.",
+          "Copy current Kyd project AUD/STS/Starter/task/feature/trace history into a target.",
+          "Modify Starter/application/package/deployment files."
+        ],
+        "acceptance": [
+          "Initializer succeeds on an empty disposable target.",
+          "Initializer creates AGENTS.md, PROJECT_INDEX.md, CURRENT_STATE.md, Protocol R3, Playbook R3, Runtime R1, FEATURE_MATRIX.md, TASK_INDEX.md, CURRENT_TASK.md, IMPLEMENTATION_TRACE.md, tools/kyd_runtime_validate.py, and KYD_BOOTSTRAP_MANIFEST.json.",
+          "Protocol, Playbook, Runtime and Runtime validator source hashes are verified before copy and copied bytes are verified after copy.",
+          "Copied Runtime validator SHA-256 is exactly aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+          "Generated PROJECT_INDEX matches Section 6 of this plan exactly.",
+          "CURRENT_STATE.current_task is NONE and implementation eligibility is false.",
+          "TASK_INDEX tasks collection is empty.",
+          "CURRENT_TASK is a non-contract no-task sentinel with no fabricated task/Authority/dependency/scope/acceptance/verification fields.",
+          "FEATURE_MATRIX feature collection is empty.",
+          "IMPLEMENTATION_TRACE trace collection is empty.",
+          "KYD_BOOTSTRAP_MANIFEST.json records validation state as PENDING, not PASS.",
+          "No stale AUD/STS/sa-template/current-project metadata exists in generated dynamic files.",
+          "Controlled-path collision is rejected without destructive overwrite."
+        ],
+        "verification": [
+          "Run initializer against a disposable empty temporary target.",
+          "Verify every mandatory output path exists.",
+          "Recompute copied pinned hashes including Runtime validator hash.",
+          "Run generated target Runtime validator in structure mode and closeout mode; both must PASS.",
+          "Run generated target Runtime validator in execution mode and verify execution is rejected because current_task=NONE.",
+          "Verify generated PROJECT_INDEX routes all three static Authorities and six dynamic/provenance entries.",
+          "Run a collision negative case and verify fail-closed behavior.",
+          "Scan generated dynamic files only for prohibited inherited AUD/STS/sa-template/current-project metadata.",
+          "Run git diff --check.",
+          "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md.",
+          "Run Runtime closeout validation before marking BS-IMPL-020 IMPLEMENTED/VERIFIED."
+        ]
+      }
+    },
+    {
+      "task_id": "BS-IMPL-030",
+      "title": "Bootstrap-Specific Validation and Final Initializer Integration",
+      "type": "IMPLEMENTATION",
+      "status": "NOT_READY",
+      "contract": {
+        "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
+        "depends_on": [
+          "BS-IMPL-020"
+        ],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KPS-BS-PACK-SPEC-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "RUNTIME-001",
+              "version": "R1"
+            }
+          ],
+          "reference": []
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "tools/kyd_bootstrap_validate.py",
+            "tools/kyd-bootstrap/init_project.py",
+            "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+            "docs/bootstrap/implementation/evidence/BS-IMPL-030_EVIDENCE.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [
+            "Bootstrap validation result",
+            "Bootstrap manifest validation state"
+          ],
+          "api": [],
+          "other": [
+            "Disposable positive and negative generated-project copies"
+          ]
+        },
+        "shared_resources": [
+          "Bootstrap initializer",
+          "Bootstrap source manifest",
+          "Runtime validator invocation boundary",
+          "Bootstrap generated-project path contract",
+          "Runtime task closeout state"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Create tools/kyd_bootstrap_validate.py as a bounded wrapper around the existing Runtime validator.",
+          "Patch tools/kyd-bootstrap/init_project.py only as required to install and invoke the Bootstrap validator after generation.",
+          "Patch tools/kyd-bootstrap/bootstrap_pack_r3.json only as required to include the installed Bootstrap validator source/target mapping.",
+          "Make final Bootstrap PASS depend on successful Runtime validation plus Bootstrap-specific validation.",
+          "Record task-scoped evidence and normal Runtime task closeout state."
+        ],
+        "forbidden_changes": [
+          "Modify tools/kyd_runtime_validate.py or Runtime validator semantics.",
+          "Modify frozen Protocol, Playbook, Runtime, or Bootstrap Spec.",
+          "Duplicate or fork Runtime dependency/Authority/Gate semantics inside Bootstrap validation.",
+          "Record Bootstrap PASS when Runtime or Bootstrap validation fails.",
+          "Broaden stale-state scans into immutable frozen Authority bodies or intentional test fixtures.",
+          "Modify current project state/history except normal Runtime task closeout for BS-IMPL-030.",
+          "Modify Starter/application/package/deployment files."
+        ],
+        "acceptance": [
+          "tools/kyd_bootstrap_validate.py wraps, rather than patches or replaces, tools/kyd_runtime_validate.py.",
+          "Final initializer installs tools/kyd_bootstrap_validate.py into the generated target.",
+          "Final initializer invokes the installed target Bootstrap validator before finalizing initialization.",
+          "Bootstrap validator invokes Runtime validation and additionally validates required structure, routing, pinned hashes, clean zero-state, CURRENT_TASK sentinel safety, stale-state rejection, and AGENTS neutrality.",
+          "Runtime validator target copy remains exact hash aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+          "A positive generated project passes Runtime structure/closeout validation and Bootstrap validation while execution remains ineligible.",
+          "Negative cases reject at least: missing mandatory file, wrong pinned Authority hash, stale project-state leakage, non-neutral AGENTS binding, unsafe active-task-like CURRENT_TASK content while current_task=NONE.",
+          "KYD_BOOTSTRAP_MANIFEST.json records PASS only after both Runtime and Bootstrap-specific validation succeed.",
+          "Any validation failure leaves Bootstrap result non-PASS and initializer exits fail-closed."
+        ],
+        "verification": [
+          "Generate a fresh disposable target with the real final initializer.",
+          "Verify target contains both tools/kyd_runtime_validate.py and tools/kyd_bootstrap_validate.py.",
+          "Verify target Runtime validator hash exactly matches aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+          "Run positive Bootstrap validation and verify manifest PASS is recorded only after success.",
+          "Run each required negative mutation in disposable copies and verify rejection for the intended invariant.",
+          "Confirm execution-mode Runtime validation remains rejected at current_task=NONE.",
+          "Run git diff --check.",
+          "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-030_EVIDENCE.md.",
+          "Run Runtime closeout validation before marking BS-IMPL-030 IMPLEMENTED/VERIFIED."
+        ]
+      }
+    },
+    {
+      "task_id": "BS-IMPL-040",
+      "title": "Independent End-to-End Bootstrap Verification",
+      "type": "VERIFICATION",
+      "status": "NOT_READY",
+      "contract": {
+        "goal": "Independently verify the completed Bootstrap Pack against every frozen acceptance requirement using a real disposable new-project initialization, without modifying implementation source.",
+        "depends_on": [
+          "BS-IMPL-030"
+        ],
+        "authority_inputs": {
+          "mandatory": [
+            {
+              "authority_id": "KPS-BS-PACK-SPEC-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "RUNTIME-001",
+              "version": "R1"
+            }
+          ],
+          "reference": [
+            {
+              "authority_id": "KPS-DP-R3",
+              "version": "R3"
+            },
+            {
+              "authority_id": "KPS-DP-PLAYBOOK-R3",
+              "version": "R3"
+            }
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/bootstrap/verification/KYD_PROJECT_BOOTSTRAP_PACK_R3_E2E_VERIFICATION.md",
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": [
+            "Independent Bootstrap verification evidence"
+          ],
+          "api": [],
+          "other": [
+            "Disposable temporary generated-project verification targets"
+          ]
+        },
+        "shared_resources": [
+          "Runtime task closeout state"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Create only the deterministic end-to-end verification evidence document.",
+          "Create/discard temporary external verification targets.",
+          "Record normal Runtime verification/closeout state for BS-IMPL-040."
+        ],
+        "forbidden_changes": [
+          "Modify any Bootstrap implementation source, including tools/kyd-bootstrap/** and tools/kyd_bootstrap_validate.py.",
+          "Modify tools/kyd_runtime_validate.py.",
+          "Modify frozen Protocol, Playbook, Runtime, or Bootstrap Spec.",
+          "Modify generated-project source templates to make verification pass.",
+          "Repair defects discovered during verification.",
+          "Modify docs/PROJECT_INDEX.md or register evidence while acting as Verifier.",
+          "Modify Starter/application/package/deployment files.",
+          "Make any change outside the evidence file, disposable targets, and normal Runtime task closeout state."
+        ],
+        "acceptance": [
+          "Real initializer creates every mandatory new-project file.",
+          "Protocol, Playbook, Runtime and Runtime validator pinned identities/hashes resolve and match.",
+          "Generated PROJECT_INDEX exactly matches the required static and dynamic routing baseline.",
+          "Generated AGENTS is agent-neutral and contains the required universal entry contract.",
+          "CURRENT_STATE, TASK_INDEX, CURRENT_TASK sentinel, FEATURE_MATRIX and IMPLEMENTATION_TRACE form a clean zero-state.",
+          "No stale source-project metadata exists in generated dynamic files.",
+          "Runtime structure and closeout validation PASS.",
+          "Bootstrap-specific validation PASS.",
+          "Runtime execution mode remains ineligible because no current task is selected.",
+          "Fail-closed collision behavior PASS.",
+          "Fresh-session/replacement-agent recovery PASS using repository-controlled sources only.",
+          "No BLOCKER or MAJOR implementation defect remains."
+        ],
+        "verification": [
+          "Run the real final initializer against a new disposable target.",
+          "Run the installed Runtime validator and installed Bootstrap validator from the generated target.",
+          "Recompute all pinned hashes, including Runtime validator hash.",
+          "Verify all PROJECT_INDEX routes resolve.",
+          "Verify zero-state and no-task sentinel behavior.",
+          "Verify expected execution rejection at current_task=NONE.",
+          "Run fail-closed collision test.",
+          "Perform fresh-session recovery check using AGENTS.md, PROJECT_INDEX.md, CURRENT_STATE.md, CURRENT_TASK.md and routed frozen Authorities only.",
+          "Write reproducible evidence only to docs/bootstrap/verification/KYD_PROJECT_BOOTSTRAP_PACK_R3_E2E_VERIFICATION.md.",
+          "If any defect is found, return FAIL/BLOCKED and route correction to a separately Planning-authorized correction task; do not modify implementation source.",
+          "Run Runtime closeout validation before marking BS-IMPL-040 VERIFIED."
+        ]
+      }
     }
   ]
 }
@@ -1433,4 +1809,12 @@ STS-010 → STS-020 (historical failed audit)
                                   └────→ STS-024 residual correction → STS-025 fresh-context re-audit → STS-030 freeze
 ```
 
-STS-020 and STS-023 remain historical BLOCKED audit results. STS-024, STS-025, and STS-030 are VERIFIED. The Kyd SaaS Starter Detailed Spec R1 is FROZEN. No implementation Task is registered or authorized by this sequence.
+STS-020 and STS-023 remain historical BLOCKED audit results. STS-024, STS-025, and STS-030 are VERIFIED. The Kyd SaaS Starter Detailed Spec R1 is FROZEN.
+
+The Planner-approved Bootstrap implementation sequence is registered as:
+
+```text
+BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
+```
+
+Only BS-IMPL-010 is READY and selected. Downstream tasks remain NOT_READY until their explicit dependencies are VERIFIED.
