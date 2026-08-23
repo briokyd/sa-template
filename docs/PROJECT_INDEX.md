@@ -95,6 +95,17 @@
       "purpose": "User authorization, independent review, candidate provenance, final integrity hashes, validation evidence, and Bootstrap specification freeze declaration"
     },
     {
+      "authority_id": "KPS-BS-R3-E2E-VERIFICATION",
+      "area": "execution",
+      "name": "Kyd Project Bootstrap Pack R3 End-to-End Verification",
+      "path": "docs/bootstrap/verification/KYD_PROJECT_BOOTSTRAP_PACK_R3_E2E_VERIFICATION.md",
+      "kind": "EVIDENCE",
+      "version": "R3",
+      "status": "ACTIVE",
+      "sha256": "74cc08466c3488385457c4854c11ce1644ce9200eac307f5617c1249479cf784",
+      "purpose": "Independent end-to-end evidence that Bootstrap Pack R3 materially initializes a valid new Kyd-managed project and passes all frozen Bootstrap acceptance criteria"
+    },
+    {
       "authority_id": "AUDIT-001",
       "area": "audit",
       "name": "sa-template Full Repository Audit Authority",

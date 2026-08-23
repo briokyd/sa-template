@@ -9,9 +9,9 @@
   "runtime_version": "KPR-V1",
   "product_freeze_version": "KSS_DETAILED_SPEC_R1",
   "ui_freeze_version": "A-002_KEEP_LIST",
-  "current_phase": "BOOTSTRAP_PACK_IMPLEMENTATION",
+  "current_phase": "BOOTSTRAP_PACK_IMPLEMENTATION_CLOSED",
   "current_task": "NONE",
-  "last_verified_commit": "18e7b184d41ece14a05576dfbaa92927adf5951b",
+  "last_verified_commit": "37ebe4c94daa96eba85f3355514a26eab9220a1b",
   "blocked": {
     "status": false,
     "blocker_ids": []
@@ -62,5 +62,10 @@ Current control-layer state:
 - Starter aggregation and implementation: `HOLD`
 - Active control-layer blockers: `NONE`
 - Bootstrap Pack Implementation Planning Gate: `PASS` (Gate Owner: Planner)
+- Bootstrap Pack Spec (`KPS-BS-PACK-SPEC-R3` / R3): `FROZEN`
+- Bootstrap Pack implementation and verification: `COMPLETE + VERIFIED`
+- Final E2E verification (`KPS-BS-R3-E2E-VERIFICATION`): `PASS + VERIFIED`
+- Bootstrap Pack implementation workstream: `CLOSED`; remaining implementation gaps: `NONE`
 - Runtime task pointers: `current_task = NONE`; `next_task = NONE`
+- Implementation execution eligibility: `FALSE` (`NO CURRENT TASK`)
 - BS-IMPL-010/020/030/040 and BS-CORR-020: `VERIFIED`
