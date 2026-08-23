@@ -644,6 +644,38 @@
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ]
+    },
+    {
+      "trace_id": "BS-IMPL-010-SOURCE-MANIFEST-AGENTS-2026-08-23",
+      "source_id": "KPS-BS-PACK-SPEC-R3",
+      "task_id": "BS-IMPL-010",
+      "status": "IMPLEMENTED",
+      "summary": "Created the pinned Bootstrap Pack R3 source manifest and agent-neutral AGENTS entry template. Local contract verification passed; independent verification remains required before BS-IMPL-010 can become VERIFIED.",
+      "implementation": "Added a deterministic local-only manifest that pins Protocol R3, Playbook R3, Runtime R1, and the Runtime validator by exact path and SHA-256, plus the required generated target path set. Added a generic repository-first AGENTS template with zero-task, deny-by-default, scope, Authority, dependency, and verification semantics.",
+      "verification": [
+        "python3 tools/kyd_runtime_validate.py --root . --mode execution => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
+        "python3 -m json.tool tools/kyd-bootstrap/bootstrap_pack_r3.json => PASS",
+        "Pinned source SHA-256 verification for KPS-DP-R3, KPS-DP-PLAYBOOK-R3, RUNTIME-001, and tools/kyd_runtime_validate.py => PASS",
+        "Required generated target paths 12/12 and local pinned-only resolution policy => PASS",
+        "AGENTS required-clause and prohibited-binding checks => PASS",
+        "git diff --check => PASS",
+        "python3 tools/kyd_runtime_validate.py --root . --mode structure => PASS",
+        "python3 tools/kyd_runtime_validate.py --root . --mode closeout => PASS"
+      ],
+      "evidence": [
+        "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
+        "tools/kyd-bootstrap/bootstrap_pack_r3.json SHA-256 c580372c9cb4fc31a3c332f7815c19d8f9b8acbfa55905e8b4eab2b78b9a8871",
+        "tools/kyd-bootstrap/templates/AGENTS.md SHA-256 693df6835a6991d4624b7fe6b302f9fc17fb055d8330fbd7417e36778c1ae9d7"
+      ],
+      "changed_files": [
+        "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+        "tools/kyd-bootstrap/templates/AGENTS.md",
+        "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
+        "docs/CURRENT_STATE.md",
+        "docs/tasks/TASK_INDEX.md",
+        "docs/tasks/CURRENT_TASK.md",
+        "docs/execution/IMPLEMENTATION_TRACE.md"
+      ]
     }
   ]
 }

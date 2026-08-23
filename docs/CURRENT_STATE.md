@@ -63,4 +63,4 @@ Current control-layer state:
 - Active control-layer blockers: `NONE`
 - Bootstrap Pack Implementation Planning Gate: `PASS` (Gate Owner: Planner)
 - Runtime task pointers: `current_task = BS-IMPL-010`; `next_task = BS-IMPL-020`
-- BS-IMPL-010: `READY`; BS-IMPL-020/030/040: `NOT_READY`
+- BS-IMPL-010: `IMPLEMENTED` pending independent verification; BS-IMPL-020/030/040: `NOT_READY`

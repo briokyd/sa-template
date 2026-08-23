@@ -6,7 +6,7 @@
   "project": "sa-template",
   "runtime_version": "KPR-V1",
   "task_id": "BS-IMPL-010",
-  "status": "READY",
+  "status": "IMPLEMENTED",
   "contract": {
     "goal": "Create the minimal reusable Bootstrap source manifest and universal agent-neutral AGENTS.md source template required by the frozen Bootstrap Pack specification, without implementing project initialization yet.",
     "depends_on": [],
@@ -87,8 +87,13 @@
       "Run Runtime closeout validation before marking BS-IMPL-010 IMPLEMENTED/VERIFIED."
     ]
   },
-  "verification_evidence": []
+  "verification_evidence": [
+    "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
+    "Manifest JSON parse and pinned source hash verification PASS",
+    "AGENTS required-clause and prohibited-binding checks PASS",
+    "Runtime structure and closeout validation PASS"
+  ]
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-BS-IMPL-010 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation has not started.
+BS-IMPL-010 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation is complete and awaits independent verification.

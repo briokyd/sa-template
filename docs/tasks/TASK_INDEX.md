@@ -1413,7 +1413,7 @@
       "task_id": "BS-IMPL-010",
       "title": "Bootstrap Source Manifest and Agent-Neutral Entry Template",
       "type": "IMPLEMENTATION",
-      "status": "READY",
+      "status": "IMPLEMENTED",
       "contract": {
         "goal": "Create the minimal reusable Bootstrap source manifest and universal agent-neutral AGENTS.md source template required by the frozen Bootstrap Pack specification, without implementing project initialization yet.",
         "depends_on": [],

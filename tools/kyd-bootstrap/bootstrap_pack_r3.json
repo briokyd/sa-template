@@ -1,0 +1,63 @@
+{
+  "schema": "kyd.bootstrap-pack.source-manifest.v1",
+  "bootstrap_pack": {
+    "authority_id": "KPS-BS-PACK-SPEC-R3",
+    "version": "R3",
+    "status": "FROZEN",
+    "source_path": "docs/bootstrap/KYD_PROJECT_BOOTSTRAP_PACK_PACKAGING_SPEC_R3.md",
+    "sha256": "3d86588d1f0f2d8c0b94279540220558166a5ca6fee8b27b2929e7b12d316caa"
+  },
+  "pinned_assets": [
+    {
+      "asset_id": "KPS-DP-R3",
+      "kind": "AUTHORITY",
+      "version": "R3",
+      "source_path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_R3.md",
+      "target_path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_R3.md",
+      "sha256": "5dddfe4baf827be59e3b730a45642503d74b5913131606f2b60f6a2d4ec7bea0"
+    },
+    {
+      "asset_id": "KPS-DP-PLAYBOOK-R3",
+      "kind": "AUTHORITY",
+      "version": "R3",
+      "source_path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_EXECUTION_PLAYBOOK_R3.md",
+      "target_path": "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_EXECUTION_PLAYBOOK_R3.md",
+      "sha256": "e4039755860173a5bfb409f737710be0b9ad0e8a5654e22329ff23970372a02c"
+    },
+    {
+      "asset_id": "RUNTIME-001",
+      "kind": "AUTHORITY",
+      "version": "R1",
+      "source_path": "docs/kyd-runtime/Kyd_Project_Runtime_V1_Minimal_Spec_R1.md",
+      "target_path": "docs/kyd-runtime/Kyd_Project_Runtime_V1_Minimal_Spec_R1.md",
+      "sha256": "fe78677830b5a24c0eeea43a70c6fc266687f9f37cec1e747ad679ebaa12e10a"
+    },
+    {
+      "asset_id": "KPR-V1-R1-VALIDATOR",
+      "kind": "TOOL",
+      "version": "R1",
+      "source_path": "tools/kyd_runtime_validate.py",
+      "target_path": "tools/kyd_runtime_validate.py",
+      "sha256": "aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7"
+    }
+  ],
+  "generated_target_paths": [
+    "AGENTS.md",
+    "docs/PROJECT_INDEX.md",
+    "docs/CURRENT_STATE.md",
+    "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_R3.md",
+    "docs/delivery-protocol/KYD_DELIVERY_PROTOCOL_EXECUTION_PLAYBOOK_R3.md",
+    "docs/kyd-runtime/Kyd_Project_Runtime_V1_Minimal_Spec_R1.md",
+    "docs/product/FEATURE_MATRIX.md",
+    "docs/tasks/TASK_INDEX.md",
+    "docs/tasks/CURRENT_TASK.md",
+    "docs/execution/IMPLEMENTATION_TRACE.md",
+    "tools/kyd_runtime_validate.py",
+    "KYD_BOOTSTRAP_MANIFEST.json"
+  ],
+  "resolution": {
+    "mode": "LOCAL_PINNED_ONLY",
+    "network_allowed": false,
+    "mutable_aliases": []
+  }
+}
