@@ -10,8 +10,8 @@
   "product_freeze_version": "KSS_DETAILED_SPEC_R1",
   "ui_freeze_version": "A-002_KEEP_LIST",
   "current_phase": "BOOTSTRAP_PACK_IMPLEMENTATION",
-  "current_task": "BS-CORR-020",
-  "last_verified_commit": "fa66ca5d66f0c03b6e8409c20d32a9e2680acb8d",
+  "current_task": "BS-IMPL-030",
+  "last_verified_commit": "52e37c9b90d2823d250c3ae055c4530e2eaf354e",
   "blocked": {
     "status": false,
     "blocker_ids": []
@@ -46,7 +46,7 @@
     }
   ],
   "known_deviations": [],
-  "next_task": "BS-IMPL-030",
+  "next_task": "BS-IMPL-040",
   "release_status": "NOT_READY"
 }
 <!-- KYD_RUNTIME_DATA_END -->
@@ -62,5 +62,5 @@ Current control-layer state:
 - Starter aggregation and implementation: `HOLD`
 - Active control-layer blockers: `NONE`
 - Bootstrap Pack Implementation Planning Gate: `PASS` (Gate Owner: Planner)
-- Runtime task pointers: `current_task = BS-CORR-020`; `next_task = BS-IMPL-030`
-- BS-IMPL-010: `VERIFIED`; BS-IMPL-020: `IMPLEMENTED`; BS-CORR-020: `IMPLEMENTED` pending independent verification; BS-IMPL-030/040: `NOT_READY`
+- Runtime task pointers: `current_task = BS-IMPL-030`; `next_task = BS-IMPL-040`
+- BS-IMPL-010/020 and BS-CORR-020: `VERIFIED`; BS-IMPL-030: `READY`; BS-IMPL-040: `NOT_READY`

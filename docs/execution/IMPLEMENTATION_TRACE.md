@@ -686,8 +686,8 @@
       "trace_id": "BS-IMPL-020-GENERIC-INITIALIZER-2026-08-23",
       "source_id": "KPS-BS-PACK-SPEC-R3",
       "task_id": "BS-IMPL-020",
-      "status": "IMPLEMENTED",
-      "summary": "Implemented and locally verified the generic Bootstrap initializer. Independent verification remains required before BS-IMPL-020 can become VERIFIED.",
+      "status": "VERIFIED",
+      "summary": "Independently verified the corrected generic Bootstrap initializer after BS-CORR-020. All frozen acceptance checks passed and BS-IMPL-030 became eligible for mechanical activation.",
       "implementation": "Added a standard-library Python CLI that validates the local pinned source manifest and source hashes, generates the exact Kyd Runtime zero-state, writes managed paths exclusively with rollback, verifies post-write hashes, and records Bootstrap provenance as PENDING.",
       "verification": [
         "python3 tools/kyd_runtime_validate.py --root . --mode execution before implementation => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
@@ -701,13 +701,19 @@
         "Generated target Runtime execution mode rejected at current_task=NONE => expected PASS",
         "Protected docs/tasks collision exited 2 before any managed file creation => PASS",
         "git diff --check => PASS",
-        "Source repository Runtime structure and closeout modes => PASS"
+        "Source repository Runtime structure and closeout modes => PASS",
+        "BS-VER-020 rerun fresh target /tmp/bs-ver-020-rerun-positive.8AZvjb initialized successfully with mandatory files 12/12",
+        "BS-VER-020 rerun exact static metadata 3/3, dynamic metadata 6/6, and route resolution 9/9 => PASS",
+        "BS-VER-020 rerun pinned hashes, zero-state, PENDING manifest, Runtime structure/closeout, expected execution rejection, stale-state/genericity, and managed collision checks => PASS"
       ],
       "evidence": [
         "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
-        "tools/kyd-bootstrap/init_project.py SHA-256 64f027806c69c02a9907fc091da078871da0ec8875243e8ce7cc5af26701bfa2",
+        "tools/kyd-bootstrap/init_project.py SHA-256 335d893385450dea84423a281dedfa5c48eeb43590287c0cfc66e839415ce98e",
         "Positive target /tmp/bs-impl-020-final-positive.co53pk",
-        "Collision target /tmp/bs-impl-020-final-collision.qHYgig"
+        "Collision target /tmp/bs-impl-020-final-collision.qHYgig",
+        "BS-VER-020 rerun independent verification decision: VERIFIED",
+        "Implementation commit 176d3e028a41effd8c9d5accdd17db126f31b4e6",
+        "Correction commit 52e37c9b90d2823d250c3ae055c4530e2eaf354e"
       ],
       "changed_files": [
         "tools/kyd-bootstrap/init_project.py",
@@ -722,8 +728,8 @@
       "trace_id": "BS-CORR-020-PROJECT-INDEX-METADATA-2026-08-23",
       "source_id": "KPS-BS-PACK-SPEC-R3",
       "task_id": "BS-CORR-020",
-      "status": "IMPLEMENTED",
-      "summary": "Corrected only the generated PROJECT_INDEX metadata defect found by BS-VER-020. BS-IMPL-020 remains IMPLEMENTED and BS-IMPL-030 remains NOT_READY pending independent re-verification.",
+      "status": "VERIFIED",
+      "summary": "Independently verified the bounded generated PROJECT_INDEX metadata correction; exact static and dynamic metadata and all nine routes passed on a fresh target.",
       "implementation": "Updated project_index_data() so the three static Authority entries exactly match the approved Section 6 metadata and all six dynamic/provenance entries use EVIDENCE, v1, ACTIVE, and an empty SHA-256 string.",
       "verification": [
         "Runtime execution validation after BS-CORR-020 registration => KYD_RUNTIME_VALIDATE: PASS; EXECUTION_ALLOWED = TRUE",
@@ -734,12 +740,18 @@
         "Generated target Runtime structure and closeout modes => PASS",
         "Generated target Runtime execution rejected at current_task=NONE, exit 2 => expected PASS",
         "Python source compilation and git diff --check => PASS",
-        "Source repository Runtime structure and closeout modes => PASS"
+        "Source repository Runtime structure and closeout modes => PASS",
+        "BS-VER-020 rerun fresh static metadata comparison => PASS 3/3",
+        "BS-VER-020 rerun fresh dynamic metadata comparison => PASS 6/6",
+        "BS-VER-020 rerun fresh PROJECT_INDEX route resolution => PASS 9/9",
+        "BS-VER-020 rerun evidence reproducibility and correction scope => PASS"
       ],
       "evidence": [
         "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
         "tools/kyd-bootstrap/init_project.py SHA-256 335d893385450dea84423a281dedfa5c48eeb43590287c0cfc66e839415ce98e",
-        "BS-VER-020 PROJECT_INDEX metadata finding corrected"
+        "BS-VER-020 PROJECT_INDEX metadata finding corrected",
+        "BS-VER-020 rerun independent verification decision: VERIFIED",
+        "Correction commit 52e37c9b90d2823d250c3ae055c4530e2eaf354e"
       ],
       "changed_files": [
         "tools/kyd-bootstrap/init_project.py",

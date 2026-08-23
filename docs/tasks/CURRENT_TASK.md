@@ -5,12 +5,12 @@
   "runtime_schema": "kyd.current-task.v1",
   "project": "sa-template",
   "runtime_version": "KPR-V1",
-  "task_id": "BS-CORR-020",
-  "status": "IMPLEMENTED",
+  "task_id": "BS-IMPL-030",
+  "status": "READY",
   "contract": {
-    "goal": "Correct only the generated docs/PROJECT_INDEX.md metadata emitted by the Bootstrap initializer so it exactly matches the approved Section 6 baseline after BS-VER-020, without redesigning or implementing Bootstrap validation.",
+    "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
     "depends_on": [
-      "BS-IMPL-010"
+      "BS-IMPL-020"
     ],
     "authority_inputs": {
       "mandatory": [
@@ -29,69 +29,73 @@
       "routes": [],
       "components": [],
       "files": [
+        "tools/kyd_bootstrap_validate.py",
         "tools/kyd-bootstrap/init_project.py",
-        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
+        "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+        "docs/bootstrap/implementation/evidence/BS-IMPL-030_EVIDENCE.md",
         "docs/CURRENT_STATE.md",
         "docs/tasks/TASK_INDEX.md",
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ],
       "data": [
-        "Generated PROJECT_INDEX metadata"
+        "Bootstrap validation result",
+        "Bootstrap manifest validation state"
       ],
       "api": [],
       "other": [
-        "Disposable temporary target repositories used only for correction verification"
+        "Disposable positive and negative generated-project copies"
       ]
     },
     "shared_resources": [
       "Bootstrap initializer",
-      "Generated PROJECT_INDEX contract",
+      "Bootstrap source manifest",
+      "Runtime validator invocation boundary",
+      "Bootstrap generated-project path contract",
       "Runtime task closeout state"
     ],
     "gates_required": [],
     "allowed_changes": [
-      "Patch tools/kyd-bootstrap/init_project.py only to emit the exact approved static and dynamic PROJECT_INDEX metadata.",
-      "Update docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md with reproducible corrected PROJECT_INDEX evidence.",
-      "Record task-scoped evidence and normal Runtime task closeout state only."
+      "Create tools/kyd_bootstrap_validate.py as a bounded wrapper around the existing Runtime validator.",
+      "Patch tools/kyd-bootstrap/init_project.py only as required to install and invoke the Bootstrap validator after generation.",
+      "Patch tools/kyd-bootstrap/bootstrap_pack_r3.json only as required to include the installed Bootstrap validator source/target mapping.",
+      "Make final Bootstrap PASS depend on successful Runtime validation plus Bootstrap-specific validation.",
+      "Record task-scoped evidence and normal Runtime task closeout state."
     ],
     "forbidden_changes": [
-      "Modify frozen Delivery Protocol R3, Execution Playbook R3, Runtime R1, or Bootstrap Pack Spec R3.",
-      "Modify tools/kyd_runtime_validate.py.",
-      "Modify tools/kyd-bootstrap/bootstrap_pack_r3.json or tools/kyd-bootstrap/templates/AGENTS.md.",
-      "Create or implement a Bootstrap validator.",
-      "Modify Starter/application/package/deployment files.",
-      "Implement or activate BS-IMPL-030."
+      "Modify tools/kyd_runtime_validate.py or Runtime validator semantics.",
+      "Modify frozen Protocol, Playbook, Runtime, or Bootstrap Spec.",
+      "Duplicate or fork Runtime dependency/Authority/Gate semantics inside Bootstrap validation.",
+      "Record Bootstrap PASS when Runtime or Bootstrap validation fails.",
+      "Broaden stale-state scans into immutable frozen Authority bodies or intentional test fixtures.",
+      "Modify current project state/history except normal Runtime task closeout for BS-IMPL-030.",
+      "Modify Starter/application/package/deployment files."
     ],
     "acceptance": [
-      "Generated PROJECT_INDEX contains the exact approved metadata for KPS-DP-R3, KPS-DP-PLAYBOOK-R3, and RUNTIME-001.",
-      "All six dynamic/provenance entries use kind EVIDENCE, version v1, status ACTIVE, and sha256 as an empty string.",
-      "All nine PROJECT_INDEX routes resolve without Product-Specific Authority or a Domain Index.",
-      "Generated Runtime structure and closeout validation pass.",
-      "Generated Runtime execution remains rejected because current_task is NONE.",
-      "BS-IMPL-020 evidence records reproducible corrected PROJECT_INDEX results.",
-      "BS-IMPL-020 remains IMPLEMENTED and BS-IMPL-030 remains NOT_READY."
+      "tools/kyd_bootstrap_validate.py wraps, rather than patches or replaces, tools/kyd_runtime_validate.py.",
+      "Final initializer installs tools/kyd_bootstrap_validate.py into the generated target.",
+      "Final initializer invokes the installed target Bootstrap validator before finalizing initialization.",
+      "Bootstrap validator invokes Runtime validation and additionally validates required structure, routing, pinned hashes, clean zero-state, CURRENT_TASK sentinel safety, stale-state rejection, and AGENTS neutrality.",
+      "Runtime validator target copy remains exact hash aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+      "A positive generated project passes Runtime structure/closeout validation and Bootstrap validation while execution remains ineligible.",
+      "Negative cases reject at least: missing mandatory file, wrong pinned Authority hash, stale project-state leakage, non-neutral AGENTS binding, unsafe active-task-like CURRENT_TASK content while current_task=NONE.",
+      "KYD_BOOTSTRAP_MANIFEST.json records PASS only after both Runtime and Bootstrap-specific validation succeed.",
+      "Any validation failure leaves Bootstrap result non-PASS and initializer exits fail-closed."
     ],
     "verification": [
-      "Initialize a fresh disposable project with the real initializer.",
-      "Verify the three static PROJECT_INDEX entries field-for-field against the approved metadata.",
-      "Verify all six dynamic PROJECT_INDEX entries use the exact required kind, version, status, and sha256 values.",
-      "Verify all nine PROJECT_INDEX routes resolve.",
-      "Run the generated Runtime validator in structure and closeout modes; both must pass.",
-      "Run the generated Runtime validator in execution mode and verify expected rejection at current_task=NONE.",
+      "Generate a fresh disposable target with the real final initializer.",
+      "Verify target contains both tools/kyd_runtime_validate.py and tools/kyd_bootstrap_validate.py.",
+      "Verify target Runtime validator hash exactly matches aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+      "Run positive Bootstrap validation and verify manifest PASS is recorded only after success.",
+      "Run each required negative mutation in disposable copies and verify rejection for the intended invariant.",
+      "Confirm execution-mode Runtime validation remains rejected at current_task=NONE.",
       "Run git diff --check.",
-      "Run source repository Runtime structure and closeout validation before marking BS-CORR-020 IMPLEMENTED."
+      "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-030_EVIDENCE.md.",
+      "Run Runtime closeout validation before marking BS-IMPL-030 IMPLEMENTED/VERIFIED."
     ]
   },
-  "verification_evidence": [
-    "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
-    "Static PROJECT_INDEX metadata exact match 3/3",
-    "Dynamic PROJECT_INDEX metadata exact match 6/6",
-    "PROJECT_INDEX routes resolve 9/9",
-    "Generated Runtime structure and closeout PASS",
-    "Generated Runtime execution rejected at current_task=NONE as expected"
-  ]
+  "verification_evidence": []
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-BS-CORR-020 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; correction implementation is complete and awaits independent verification.
+BS-IMPL-030 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation has not started.

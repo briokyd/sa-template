@@ -1499,7 +1499,7 @@
       "task_id": "BS-IMPL-020",
       "title": "Generic Bootstrap Initializer and Zero-State Generation",
       "type": "IMPLEMENTATION",
-      "status": "IMPLEMENTED",
+      "status": "VERIFIED",
       "contract": {
         "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
         "depends_on": [
@@ -1598,7 +1598,7 @@
       "task_id": "BS-CORR-020",
       "title": "Correct Bootstrap PROJECT_INDEX Metadata",
       "type": "IMPLEMENTATION",
-      "status": "IMPLEMENTED",
+      "status": "VERIFIED",
       "contract": {
         "goal": "Correct only the generated docs/PROJECT_INDEX.md metadata emitted by the Bootstrap initializer so it exactly matches the approved Section 6 baseline after BS-VER-020, without redesigning or implementing Bootstrap validation.",
         "depends_on": [
@@ -1680,7 +1680,7 @@
       "task_id": "BS-IMPL-030",
       "title": "Bootstrap-Specific Validation and Final Initializer Integration",
       "type": "IMPLEMENTATION",
-      "status": "NOT_READY",
+      "status": "READY",
       "contract": {
         "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
         "depends_on": [
