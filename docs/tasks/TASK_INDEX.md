@@ -1680,7 +1680,7 @@
       "task_id": "BS-IMPL-030",
       "title": "Bootstrap-Specific Validation and Final Initializer Integration",
       "type": "IMPLEMENTATION",
-      "status": "READY",
+      "status": "IMPLEMENTED",
       "contract": {
         "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
         "depends_on": [

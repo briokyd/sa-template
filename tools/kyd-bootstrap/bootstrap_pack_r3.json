@@ -39,6 +39,14 @@
       "source_path": "tools/kyd_runtime_validate.py",
       "target_path": "tools/kyd_runtime_validate.py",
       "sha256": "aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7"
+    },
+    {
+      "asset_id": "KPS-BS-R3-VALIDATOR",
+      "kind": "TOOL",
+      "version": "R3",
+      "source_path": "tools/kyd_bootstrap_validate.py",
+      "target_path": "tools/kyd_bootstrap_validate.py",
+      "sha256": "a0485f335fb3e0faaf99a44142c32c38912e80ac725ce644a15d7f2540d7ae1d"
     }
   ],
   "generated_target_paths": [
@@ -53,6 +61,7 @@
     "docs/tasks/CURRENT_TASK.md",
     "docs/execution/IMPLEMENTATION_TRACE.md",
     "tools/kyd_runtime_validate.py",
+    "tools/kyd_bootstrap_validate.py",
     "KYD_BOOTSTRAP_MANIFEST.json"
   ],
   "resolution": {

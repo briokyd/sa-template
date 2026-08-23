@@ -6,7 +6,7 @@
   "project": "sa-template",
   "runtime_version": "KPR-V1",
   "task_id": "BS-IMPL-030",
-  "status": "READY",
+  "status": "IMPLEMENTED",
   "contract": {
     "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
     "depends_on": [
@@ -94,8 +94,14 @@
       "Run Runtime closeout validation before marking BS-IMPL-030 IMPLEMENTED/VERIFIED."
     ]
   },
-  "verification_evidence": []
+  "verification_evidence": [
+    "docs/bootstrap/implementation/evidence/BS-IMPL-030_EVIDENCE.md",
+    "Positive disposable initialization generated 13/13 mandatory files and completed Bootstrap validation with manifest PASS",
+    "N1-N5 negative fixtures were rejected for their intended invariants",
+    "Generated Runtime structure and closeout PASS; execution rejected as expected at current_task=NONE",
+    "Managed-path collision was rejected without modifying pre-existing content"
+  ]
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-BS-IMPL-030 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation has not started.
+BS-IMPL-030 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation is complete and awaits independent verification.

@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 import stat
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
@@ -30,7 +31,10 @@ STATIC_AUTHORITY_IDS = {
     "KPS-DP-PLAYBOOK-R3",
     "RUNTIME-001",
 }
-REQUIRED_PINNED_ASSET_IDS = STATIC_AUTHORITY_IDS | {"KPR-V1-R1-VALIDATOR"}
+REQUIRED_PINNED_ASSET_IDS = STATIC_AUTHORITY_IDS | {
+    "KPR-V1-R1-VALIDATOR",
+    "KPS-BS-R3-VALIDATOR",
+}
 PROTECTED_DIRECTORY_PATHS = {
     PurePosixPath("docs/delivery-protocol"),
     PurePosixPath("docs/kyd-runtime"),
@@ -526,6 +530,52 @@ def write_outputs(
         raise
 
 
+def run_bootstrap_validation(target: Path) -> str:
+    validator = target / "tools/kyd_bootstrap_validate.py"
+    result = subprocess.run(
+        [sys.executable, str(validator), "--root", "."],
+        cwd=target,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0 or "KYD_BOOTSTRAP_VALIDATE: PASS" not in result.stdout:
+        detail = (result.stdout + result.stderr).strip()
+        raise BootstrapError(f"generated project validation failed: {detail}")
+    return result.stdout.strip()
+
+
+def finalize_bootstrap_manifest(target: Path) -> None:
+    path = target / "KYD_BOOTSTRAP_MANIFEST.json"
+    temporary_path = path.with_name(f"{path.name}.tmp")
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise BootstrapError(f"cannot finalize Bootstrap manifest: {exc}") from exc
+    if manifest.get("validation_state") != "PENDING":
+        raise BootstrapError("Bootstrap manifest must be PENDING before final validation")
+    manifest["validation_state"] = "PASS"
+    manifest["validation"] = {
+        "runtime_structure": "PASS",
+        "runtime_closeout": "PASS",
+        "runtime_execution_eligible": False,
+        "bootstrap": "PASS",
+    }
+    content = (json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode(
+        "utf-8"
+    )
+    try:
+        with temporary_path.open("xb") as handle:
+            handle.write(content)
+        temporary_path.replace(path)
+    except OSError as exc:
+        try:
+            temporary_path.unlink()
+        except FileNotFoundError:
+            pass
+        raise BootstrapError(f"cannot finalize Bootstrap manifest: {exc}") from exc
+
+
 def build_initialization(
     source_root: Path, project_id: str, target: Path
 ) -> tuple[dict[PurePosixPath, bytes], dict[PurePosixPath, int]]:
@@ -564,6 +614,8 @@ def main(argv: list[str] | None = None) -> int:
             raise BootstrapError("target repository path cannot be a filesystem root")
         outputs, modes = build_initialization(source_root, project_id, target)
         write_outputs(target, outputs, modes)
+        validation_output = run_bootstrap_validation(target)
+        finalize_bootstrap_manifest(target)
     except (BootstrapError, OSError) as exc:
         print("KYD_BOOTSTRAP_INIT: FAIL", file=sys.stderr)
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -572,7 +624,8 @@ def main(argv: list[str] | None = None) -> int:
     print("KYD_BOOTSTRAP_INIT: COMPLETE")
     print(f"PROJECT_ID = {project_id}")
     print(f"TARGET = {target}")
-    print("VALIDATION_STATE = PENDING")
+    print(validation_output)
+    print("VALIDATION_STATE = PASS")
     return 0
 
 
