@@ -5,6 +5,7 @@
 > **Status:** FROZEN — Runtime V1 R1 conformance verified
 > **Date:** 2026-08-19  
 > **Controlled Reconciliation Date:** 2026-08-22
+> **CURRENT_TASK Zero-State Clarification Date:** 2026-08-23
 > **Conformance Evidence:** `KPR-V1-R1-CONFORMANCE-20260822`
 > **Source Decisions:** RT-001 ～ RT-007 FROZEN  
 > **Planning Memory:** `Kyd_Project_System_完整合并备忘录` is NOT a normal Codex input.
@@ -609,6 +610,53 @@ One `CURRENT_TASK` = one primary `task_id`.
 
 No “while here” expansion to unrelated tasks.
 
+## 9.4 CURRENT_TASK Zero-State
+
+`docs/tasks/CURRENT_TASK.md` remains a required physical Runtime core file and part of
+the always-read bootstrap set.
+
+`CURRENT_STATE.current_task` is the canonical selector for whether a current Task is
+selected.
+
+When:
+
+```text
+CURRENT_STATE.current_task = NONE
+```
+
+the Runtime semantics are:
+
+```text
+no current Task is selected
+no Task contract is active through CURRENT_TASK
+implementation execution eligibility is FALSE
+CURRENT_TASK content cannot create or imply execution eligibility
+no fake Task ID, Authority, dependency, scope, acceptance, or verification is required
+```
+
+In this state, `CURRENT_TASK.md` may use a canonical no-Task sentinel document rather
+than a Task contract. The Kyd Project Bootstrap Pack may standardize that sentinel only
+when it:
+
+```text
+clearly states that no current Task is selected
+contains no fabricated Task or Authority data
+does not conflict with CURRENT_STATE.current_task = NONE
+cannot be interpreted as an executable Task contract
+```
+
+Runtime validation continues to treat `CURRENT_STATE.current_task = NONE` as the
+authoritative execution selector and need not parse Task-contract fields from
+`CURRENT_TASK.md` in this state.
+
+When `CURRENT_STATE.current_task != NONE`, all existing Runtime R1 CURRENT_TASK
+identity, status, contract, dependency, Authority, Gate, scope, acceptance, and
+verification rules remain unchanged.
+
+This clarification records the zero-state behavior fact-checked by `KPS-BS-004` and
+independently reviewed by `KPS-RT-005`. It does not change Runtime semantics or
+architecture.
+
 ---
 
 # 10. Task Scope Fields
@@ -1188,6 +1236,9 @@ FROZEN — R1
 
 Controlled Reconciliation Date:
 2026-08-22
+
+CURRENT_TASK Zero-State Clarification:
+FROZEN — KPS-RT-006 / 2026-08-23
 
 Semantic / Architecture Change:
 NONE

@@ -14,8 +14,8 @@
       "kind": "AUTHORITY",
       "version": "R1",
       "status": "FROZEN",
-      "sha256": "2d439605e774a20a01d4820df20b561e66fc6abd581403733b588d5bb033dbb2",
-      "purpose": "Frozen Runtime V1 execution rules with completed R1 conformance reconciliation"
+      "sha256": "fe78677830b5a24c0eeea43a70c6fc266687f9f37cec1e747ad679ebaa12e10a",
+      "purpose": "Frozen Runtime V1 execution rules with completed R1 conformance reconciliation and CURRENT_TASK zero-state clarification"
     },
     {
       "authority_id": "KPR-V1-R1-CONFORMANCE-20260822",
@@ -36,8 +36,8 @@
       "kind": "EVIDENCE",
       "version": "R1",
       "status": "ACTIVE",
-      "sha256": "77f95293ca4320772f4a347278530e61d9757d3e5c63f6c24fc539127bbc8a4c",
-      "purpose": "Controlled R1 amendment provenance, prior and successor hashes, conformance evidence, and formal reconciled freeze declaration"
+      "sha256": "203ebe409b4de17478bd798121b3659c20de98dab7e3fe8ec31779387eb077c7",
+      "purpose": "Controlled R1 amendment provenance, prior and successor hashes, conformance evidence, CURRENT_TASK zero-state clarification, and formal reconciled freeze declaration"
     },
     {
       "authority_id": "KPS-DP-R3",
