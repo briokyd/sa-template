@@ -1680,7 +1680,7 @@
       "task_id": "BS-IMPL-030",
       "title": "Bootstrap-Specific Validation and Final Initializer Integration",
       "type": "IMPLEMENTATION",
-      "status": "IMPLEMENTED",
+      "status": "VERIFIED",
       "contract": {
         "goal": "Implement the Bootstrap-specific validation wrapper around the existing Runtime validator and complete the final initializer integration so every generated project installs and invokes Bootstrap validation before Bootstrap PASS can be recorded.",
         "depends_on": [
@@ -1773,7 +1773,7 @@
       "task_id": "BS-IMPL-040",
       "title": "Independent End-to-End Bootstrap Verification",
       "type": "VERIFICATION",
-      "status": "NOT_READY",
+      "status": "READY",
       "contract": {
         "goal": "Independently verify the completed Bootstrap Pack against every frozen acceptance requirement using a real disposable new-project initialization, without modifying implementation source.",
         "depends_on": [
@@ -1899,4 +1899,4 @@ The Planner-approved Bootstrap implementation sequence is registered as:
 BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
 ```
 
-BS-IMPL-010 is VERIFIED. BS-IMPL-020 is READY for separate mechanical activation; BS-IMPL-030 and BS-IMPL-040 remain NOT_READY until their explicit dependencies are VERIFIED.
+BS-IMPL-010, BS-IMPL-020, and BS-IMPL-030 are VERIFIED. BS-IMPL-040 is READY for independent end-to-end verification.
