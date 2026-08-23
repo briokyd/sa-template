@@ -1413,7 +1413,7 @@
       "task_id": "BS-IMPL-010",
       "title": "Bootstrap Source Manifest and Agent-Neutral Entry Template",
       "type": "IMPLEMENTATION",
-      "status": "IMPLEMENTED",
+      "status": "VERIFIED",
       "contract": {
         "goal": "Create the minimal reusable Bootstrap source manifest and universal agent-neutral AGENTS.md source template required by the frozen Bootstrap Pack specification, without implementing project initialization yet.",
         "depends_on": [],
@@ -1499,7 +1499,7 @@
       "task_id": "BS-IMPL-020",
       "title": "Generic Bootstrap Initializer and Zero-State Generation",
       "type": "IMPLEMENTATION",
-      "status": "NOT_READY",
+      "status": "READY",
       "contract": {
         "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
         "depends_on": [
@@ -1817,4 +1817,4 @@ The Planner-approved Bootstrap implementation sequence is registered as:
 BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
 ```
 
-Only BS-IMPL-010 is READY and selected. Downstream tasks remain NOT_READY until their explicit dependencies are VERIFIED.
+BS-IMPL-010 is VERIFIED. BS-IMPL-020 is READY for separate mechanical activation; BS-IMPL-030 and BS-IMPL-040 remain NOT_READY until their explicit dependencies are VERIFIED.
