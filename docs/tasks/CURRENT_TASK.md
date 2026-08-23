@@ -5,11 +5,13 @@
   "runtime_schema": "kyd.current-task.v1",
   "project": "sa-template",
   "runtime_version": "KPR-V1",
-  "task_id": "BS-IMPL-010",
-  "status": "VERIFIED",
+  "task_id": "BS-IMPL-020",
+  "status": "READY",
   "contract": {
-    "goal": "Create the minimal reusable Bootstrap source manifest and universal agent-neutral AGENTS.md source template required by the frozen Bootstrap Pack specification, without implementing project initialization yet.",
-    "depends_on": [],
+    "goal": "Implement a generic standard-library Python initializer that materially installs pinned Kyd control assets and generates a clean Runtime zero-state in a new target repository, while leaving final Bootstrap-validator integration for BS-IMPL-030.",
+    "depends_on": [
+      "BS-IMPL-010"
+    ],
     "authority_inputs": {
       "mandatory": [
         {
@@ -21,81 +23,85 @@
           "version": "R1"
         }
       ],
-      "reference": [
-        {
-          "authority_id": "KPS-DP-R3",
-          "version": "R3"
-        },
-        {
-          "authority_id": "KPS-DP-PLAYBOOK-R3",
-          "version": "R3"
-        }
-      ]
+      "reference": []
     },
     "touches": {
       "routes": [],
       "components": [],
       "files": [
-        "tools/kyd-bootstrap/bootstrap_pack_r3.json",
-        "tools/kyd-bootstrap/templates/AGENTS.md",
-        "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
+        "tools/kyd-bootstrap/init_project.py",
+        "docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md",
         "docs/CURRENT_STATE.md",
         "docs/tasks/TASK_INDEX.md",
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ],
       "data": [
-        "Bootstrap pinned-source manifest metadata"
+        "Generated Runtime zero-state",
+        "Generated PROJECT_INDEX baseline",
+        "Generated Bootstrap provenance manifest"
       ],
       "api": [],
-      "other": []
+      "other": [
+        "Disposable temporary target repositories used only for verification"
+      ]
     },
     "shared_resources": [
-      "Bootstrap source manifest",
-      "Bootstrap AGENTS source template",
+      "tools/kyd-bootstrap/bootstrap_pack_r3.json",
+      "tools/kyd-bootstrap/templates/AGENTS.md",
+      "Bootstrap generated-project path contract",
       "Runtime task closeout state"
     ],
     "gates_required": [],
     "allowed_changes": [
-      "Create tools/kyd-bootstrap/bootstrap_pack_r3.json with exact frozen source identities, versions, source paths, target paths, and hashes.",
-      "Create tools/kyd-bootstrap/templates/AGENTS.md as an agent-neutral universal repository entry contract.",
-      "Record task-scoped implementation/verification evidence and normal Runtime task closeout state only."
+      "Create tools/kyd-bootstrap/init_project.py using Python standard library.",
+      "Generate the mandatory new-project file set defined by KPS-BS-PACK-SPEC-R3.",
+      "Copy exact pinned bytes for Protocol R3, Playbook R3, Runtime R1, and Runtime validator.",
+      "Generate deterministic PROJECT_INDEX, CURRENT_STATE, TASK_INDEX, CURRENT_TASK sentinel, FEATURE_MATRIX, IMPLEMENTATION_TRACE, and KYD_BOOTSTRAP_MANIFEST.json zero-state.",
+      "Implement fail-closed controlled-path collision handling.",
+      "Record task-scoped evidence and normal Runtime task closeout state."
     ],
     "forbidden_changes": [
-      "Modify current repository root AGENTS.md.",
-      "Modify frozen Delivery Protocol R3, Execution Playbook R3, Runtime R1, or Bootstrap Pack Spec R3.",
+      "Modify any frozen Authority source.",
       "Modify tools/kyd_runtime_validate.py.",
-      "Modify current project product/task/history content except normal Runtime task status/trace closeout for BS-IMPL-010.",
-      "Modify Starter/application/package/deployment files.",
-      "Introduce Codex-, ChatGPT-, model-, vendor-, AUD-, STS-, or sa-template-specific normative bindings into the generated AGENTS source."
+      "Modify current repository root AGENTS.md or current project dynamic state/history except normal Runtime task closeout for BS-IMPL-020.",
+      "Implement Bootstrap-specific validator logic in this task.",
+      "Record final Bootstrap PASS in KYD_BOOTSTRAP_MANIFEST.json.",
+      "Silently overwrite an existing managed-project control path.",
+      "Copy current Kyd project AUD/STS/Starter/task/feature/trace history into a target.",
+      "Modify Starter/application/package/deployment files."
     ],
     "acceptance": [
-      "bootstrap_pack_r3.json parses deterministically.",
-      "Manifest pins KPS-DP-R3, KPS-DP-PLAYBOOK-R3, RUNTIME-001 and tools/kyd_runtime_validate.py to exact source paths and exact hashes.",
-      "Runtime validator manifest hash equals aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
-      "Manifest contains no mutable latest resolution.",
-      "AGENTS source implements the frozen always-read chain and repository-first/deny-by-default rules.",
-      "AGENTS source is agent-neutral and contains no source-project history/bindings.",
-      "Only declared touch paths and normal Runtime closeout records change."
+      "Initializer succeeds on an empty disposable target.",
+      "Initializer creates AGENTS.md, PROJECT_INDEX.md, CURRENT_STATE.md, Protocol R3, Playbook R3, Runtime R1, FEATURE_MATRIX.md, TASK_INDEX.md, CURRENT_TASK.md, IMPLEMENTATION_TRACE.md, tools/kyd_runtime_validate.py, and KYD_BOOTSTRAP_MANIFEST.json.",
+      "Protocol, Playbook, Runtime and Runtime validator source hashes are verified before copy and copied bytes are verified after copy.",
+      "Copied Runtime validator SHA-256 is exactly aab284d3b4a76c691d327f0ccef27be2035fd697978be5e1bf8578fe40bb29b7.",
+      "Generated PROJECT_INDEX matches Section 6 of this plan exactly.",
+      "CURRENT_STATE.current_task is NONE and implementation eligibility is false.",
+      "TASK_INDEX tasks collection is empty.",
+      "CURRENT_TASK is a non-contract no-task sentinel with no fabricated task/Authority/dependency/scope/acceptance/verification fields.",
+      "FEATURE_MATRIX feature collection is empty.",
+      "IMPLEMENTATION_TRACE trace collection is empty.",
+      "KYD_BOOTSTRAP_MANIFEST.json records validation state as PENDING, not PASS.",
+      "No stale AUD/STS/sa-template/current-project metadata exists in generated dynamic files.",
+      "Controlled-path collision is rejected without destructive overwrite."
     ],
     "verification": [
-      "Parse bootstrap_pack_r3.json using Python standard library JSON parser.",
-      "Recompute SHA-256 for every pinned frozen Authority and Runtime validator source and compare with manifest.",
-      "Run targeted required/prohibited-clause checks on AGENTS source.",
+      "Run initializer against a disposable empty temporary target.",
+      "Verify every mandatory output path exists.",
+      "Recompute copied pinned hashes including Runtime validator hash.",
+      "Run generated target Runtime validator in structure mode and closeout mode; both must PASS.",
+      "Run generated target Runtime validator in execution mode and verify execution is rejected because current_task=NONE.",
+      "Verify generated PROJECT_INDEX routes all three static Authorities and six dynamic/provenance entries.",
+      "Run a collision negative case and verify fail-closed behavior.",
+      "Scan generated dynamic files only for prohibited inherited AUD/STS/sa-template/current-project metadata.",
       "Run git diff --check.",
-      "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md.",
-      "Run Runtime closeout validation before marking BS-IMPL-010 IMPLEMENTED/VERIFIED."
+      "Record evidence at docs/bootstrap/implementation/evidence/BS-IMPL-020_EVIDENCE.md.",
+      "Run Runtime closeout validation before marking BS-IMPL-020 IMPLEMENTED/VERIFIED."
     ]
   },
-  "verification_evidence": [
-    "docs/bootstrap/implementation/evidence/BS-IMPL-010_EVIDENCE.md",
-    "BS-VER-010 independent verification at fa66ca5d66f0c03b6e8409c20d32a9e2680acb8d PASS",
-    "Manifest JSON parse and pinned source hash verification PASS",
-    "AGENTS required-clause and prohibited-binding checks PASS",
-    "Implementation commit scope verification PASS",
-    "Runtime structure and closeout validation PASS"
-  ]
+  "verification_evidence": []
 }
 <!-- KYD_RUNTIME_DATA_END -->
 
-BS-IMPL-010 remains the selected Runtime task and is VERIFIED. BS-IMPL-020 is READY for separate mechanical activation.
+BS-IMPL-020 is the only selected Runtime task. Its contract exactly matches TASK_INDEX; implementation has not started.
