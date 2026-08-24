@@ -11,6 +11,7 @@
   "ui_freeze_version": "A-002_KEEP_LIST",
   "current_phase": "REPOSITORY_SEPARATION_COMPLETE",
   "current_task": "NONE",
+  "last_verified_commit": "8914762d630242eb8ac43113d05b5af03eb48e18",
   "last_verified_commit": "de02c12c2c818183d5cf8fa942336ea28c35e8dc",
   "blocked": {
     "status": false,
@@ -68,7 +69,11 @@ Current control-layer state:
 - Bootstrap Pack implementation workstream: `CLOSED`; remaining implementation gaps: `NONE`
 - Runtime task pointers: `current_task = NONE`; `next_task = NONE`
 - Implementation execution eligibility: `FALSE` (`NO CURRENT TASK`)
-- KPS-SPLIT-001: `VERIFIED` (standalone local repositories created; GitHub publication pending because `gh` is unavailable)
+- KPS-SPLIT-CLOSEOUT-001: `VERIFIED` (publication verification and administrative closeout complete)
+- KPS-SPLIT-001: `VERIFIED + CLOSED`
+- Core GitHub repository: `briokyd/kyd-project-system`; visibility `PRIVATE`; publication `PASS`; HEAD `f736406148cae94462b0733be23eb902dc2c01c6`
+- Starter GitHub repository: `briokyd/kyd-saas-starter`; visibility `PRIVATE`; publication `PASS`; HEAD `968be01230d8850b942db614d02d992ceca4e01f`
+- Repository separation: `COMPLETE`
 - Mixed source repository role: migration source / rollback reference
 - KPS-BS-DOC-002: `VERIFIED` (repository-local README documentation only; generated Bootstrap zero-state unchanged)
 - BS-IMPL-010/020/030/040 and BS-CORR-020: `VERIFIED`

@@ -2028,6 +2028,66 @@
           "Run source Runtime structure/closeout validation and git diff --check before marking KPS-SPLIT-001 VERIFIED."
         ]
       }
+    },
+    {
+      "task_id": "KPS-SPLIT-CLOSEOUT-001",
+      "title": "Verify GitHub Publication and Close Repository Split",
+      "type": "ADMINISTRATIVE_CLOSEOUT",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Verify GitHub publication of the two already-created repositories and close KPS-SPLIT-001 without changing split scope or repository contents.",
+        "depends_on": ["KPS-SPLIT-001"],
+        "authority_inputs": {
+          "mandatory": [
+            {"authority_id": "RUNTIME-001", "version": "R1"}
+          ],
+          "reference": [
+            {"authority_id": "KPS-DP-PLAYBOOK-R3", "version": "R3"},
+            {"authority_id": "KPS-BS-R3-E2E-VERIFICATION", "version": "R3"}
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": ["GitHub publication and repository split closeout evidence"],
+          "api": [],
+          "other": [
+            "Read-only GitHub repository metadata",
+            "Read-only local and remote Git references for kyd-project-system and kyd-saas-starter"
+          ]
+        },
+        "shared_resources": ["Source Runtime closeout state", "Published repository provenance"],
+        "gates_required": [],
+        "allowed_changes": [
+          "Read and fetch the two split repositories without modifying their contents.",
+          "Record verified PRIVATE GitHub repository identities, origins, branches, and published HEADs.",
+          "Update only source Runtime task, current-state, current-task, and trace closeout records."
+        ],
+        "forbidden_changes": [
+          "Modify Kyd Core or SaaS Starter repository contents or commits.",
+          "Modify frozen Authorities, Bootstrap implementation, validators, source application code, or Starter application code.",
+          "Recreate repositories, repoint an unexpected origin, force-push, redesign the split, or resume Starter aggregation."
+        ],
+        "acceptance": [
+          "briokyd/kyd-project-system exists, is PRIVATE, has the correct origin, and publishes local HEAD f736406148cae94462b0733be23eb902dc2c01c6 on main.",
+          "briokyd/kyd-saas-starter exists, is PRIVATE, has the correct origin, and publishes local HEAD 968be01230d8850b942db614d02d992ceca4e01f on main.",
+          "Both split repository worktrees remain unchanged.",
+          "KPS-SPLIT-001 remains VERIFIED and repository separation is recorded COMPLETE.",
+          "Source Runtime returns to current_task=NONE with canonical CURRENT_TASK sentinel."
+        ],
+        "verification": [
+          "Use gh repo view to verify exact owner/name, PRIVATE visibility, URL, and default branch for each repository.",
+          "Fetch each origin and compare local HEAD, upstream, and refs/heads/main.",
+          "Verify both split repository worktrees remain clean.",
+          "Run source Runtime structure and closeout validation plus git diff --check."
+        ]
+      }
     }
   ]
 }
@@ -2065,4 +2125,6 @@ BS-IMPL-010, BS-IMPL-020, BS-IMPL-030, and BS-IMPL-040 are VERIFIED. The registe
 
 KPS-BS-DOC-002 is VERIFIED as repository-local documentation history. It is not part of generated Bootstrap zero-state.
 
-KPS-SPLIT-001 is VERIFIED repository-local separation history. It does not enter generated Bootstrap zero-state; GitHub publication remains an external pending step because `gh` was unavailable.
+KPS-SPLIT-001 is VERIFIED and fully published repository-separation history. It does not enter generated Bootstrap zero-state.
+
+KPS-SPLIT-CLOSEOUT-001 is VERIFIED administrative publication-closeout history; it did not alter split repository contents.
