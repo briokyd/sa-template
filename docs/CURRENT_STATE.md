@@ -9,9 +9,9 @@
   "runtime_version": "KPR-V1",
   "product_freeze_version": "KSS_DETAILED_SPEC_R1",
   "ui_freeze_version": "A-002_KEEP_LIST",
-  "current_phase": "BOOTSTRAP_PACK_IMPLEMENTATION_CLOSED",
+  "current_phase": "REPOSITORY_SEPARATION_COMPLETE",
   "current_task": "NONE",
-  "last_verified_commit": "d0668f698ba66b8b0f4ccf61601ad10406cd8219",
+  "last_verified_commit": "de02c12c2c818183d5cf8fa942336ea28c35e8dc",
   "blocked": {
     "status": false,
     "blocker_ids": []
@@ -68,5 +68,7 @@ Current control-layer state:
 - Bootstrap Pack implementation workstream: `CLOSED`; remaining implementation gaps: `NONE`
 - Runtime task pointers: `current_task = NONE`; `next_task = NONE`
 - Implementation execution eligibility: `FALSE` (`NO CURRENT TASK`)
+- KPS-SPLIT-001: `VERIFIED` (standalone local repositories created; GitHub publication pending because `gh` is unavailable)
+- Mixed source repository role: migration source / rollback reference
 - KPS-BS-DOC-002: `VERIFIED` (repository-local README documentation only; generated Bootstrap zero-state unchanged)
 - BS-IMPL-010/020/030/040 and BS-CORR-020: `VERIFIED`

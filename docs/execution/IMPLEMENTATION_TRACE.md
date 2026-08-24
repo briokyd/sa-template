@@ -870,6 +870,39 @@
         "docs/tasks/CURRENT_TASK.md",
         "docs/execution/IMPLEMENTATION_TRACE.md"
       ]
+    },
+    {
+      "trace_id": "KPS-SPLIT-001-REPOSITORY-SEPARATION-2026-08-24",
+      "source_id": "KPS-BS-PACK-SPEC-R3",
+      "task_id": "KPS-SPLIT-001",
+      "status": "VERIFIED",
+      "summary": "Created independently versioned local Kyd Project System and Kyd SaaS Starter repositories while preserving the mixed source repository as rollback reference.",
+      "implementation": "Bootstrapped a clean standalone Core, copied exact generic Kyd sources and controlling provenance, extracted the SaaS application through an explicit allowlist under template/, initialized independent Git histories, and left GitHub publication pending because gh is unavailable.",
+      "verification": [
+        "Source Runtime structure/execution before migration => PASS; EXECUTION_ALLOWED=TRUE",
+        "Core repository commit f736406148cae94462b0733be23eb902dc2c01c6; Runtime structure/closeout PASS",
+        "Core contains required Bootstrap sources/provenance and no SaaS application code",
+        "Non-conflicting non-empty target Bootstrap PASS; pre-existing package.json, src/example.txt, and README-existing.md hashes unchanged",
+        "Fresh Core-generated project 13/13, Bootstrap PASS, current_task=NONE, empty TASK_INDEX/trace, canonical sentinel, and no source/migration history",
+        "Starter repository commit 968be01230d8850b942db614d02d992ceca4e01f; no Kyd Core or source task history",
+        "Starter pnpm install --frozen-lockfile and pnpm exec tsc --noEmit PASS",
+        "Starter pnpm build compiled successfully then failed on pre-existing one-byte src/app/page.tsx not being a module; no repair performed",
+        "GitHub source owner briokyd and public readability resolved; target creation/push not attempted because gh is unavailable and target-name state cannot be safely distinguished"
+      ],
+      "evidence": [
+        "/home/data/podman-cli/home/projects/vercel-github/kyd-project-system",
+        "/home/data/podman-cli/home/projects/vercel-github/kyd-saas-starter",
+        "/tmp/kps-split-existing-project.u0FmNb",
+        "/tmp/kps-split-core-fresh.aRKCai",
+        "Pre-step HEAD de02c12c2c818183d5cf8fa942336ea28c35e8dc",
+        "KPS-SPLIT-001 verification decision: VERIFIED (local split); GitHub publication: PENDING"
+      ],
+      "changed_files": [
+        "docs/CURRENT_STATE.md",
+        "docs/tasks/TASK_INDEX.md",
+        "docs/tasks/CURRENT_TASK.md",
+        "docs/execution/IMPLEMENTATION_TRACE.md"
+      ]
     }
   ]
 }

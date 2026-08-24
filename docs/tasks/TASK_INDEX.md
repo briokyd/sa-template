@@ -1947,6 +1947,87 @@
           "Run git diff --check and source Runtime structure/closeout validation."
         ]
       }
+    },
+    {
+      "task_id": "KPS-SPLIT-001",
+      "title": "Split Kyd Core and SaaS Starter Repositories",
+      "type": "REPOSITORY_MIGRATION",
+      "status": "VERIFIED",
+      "contract": {
+        "goal": "Create two new independent repositories from the current mixed repository without changing frozen Authorities or contaminating Bootstrap-generated zero-state.",
+        "depends_on": [],
+        "authority_inputs": {
+          "mandatory": [
+            {"authority_id": "KPS-BS-PACK-SPEC-R3", "version": "R3"},
+            {"authority_id": "RUNTIME-001", "version": "R1"}
+          ],
+          "reference": [
+            {"authority_id": "KPS-DP-R3", "version": "R3"},
+            {"authority_id": "KPS-DP-PLAYBOOK-R3", "version": "R3"},
+            {"authority_id": "KPS-BS-R3-E2E-VERIFICATION", "version": "R3"},
+            {"authority_id": "KSS-DS-SPEC-R1", "version": "R1"},
+            {"authority_id": "AUDIT-001", "version": "v1"}
+          ]
+        },
+        "touches": {
+          "routes": [],
+          "components": [],
+          "files": [
+            "docs/CURRENT_STATE.md",
+            "docs/tasks/TASK_INDEX.md",
+            "docs/tasks/CURRENT_TASK.md",
+            "docs/execution/IMPLEMENTATION_TRACE.md"
+          ],
+          "data": ["Repository-local split task state and verified migration evidence"],
+          "api": [],
+          "other": [
+            "Sibling kyd-project-system repository",
+            "Sibling kyd-saas-starter repository",
+            "Disposable Bootstrap and existing-project capability targets",
+            "GitHub repositories and remotes when safely resolvable"
+          ]
+        },
+        "shared_resources": [
+          "Source repository Runtime task state",
+          "Pinned Kyd Core source artifacts",
+          "SaaS template source snapshot"
+        ],
+        "gates_required": [],
+        "allowed_changes": [
+          "Record normal Runtime registration, verification evidence, and closeout state for KPS-SPLIT-001 in the source repository.",
+          "Create two new sibling directories as independent Git repositories without importing source Git history.",
+          "Populate kyd-project-system only with generic Kyd control, Bootstrap, validation, and required provenance assets.",
+          "Populate kyd-saas-starter/template only with reusable SaaS application/template material and concise repository documentation.",
+          "Create and push new GitHub repositories only when owner, visibility, authentication, and name availability are safely verified."
+        ],
+        "forbidden_changes": [
+          "Modify source application, Bootstrap implementation, validators, frozen Authorities, Bootstrap Spec, or README.",
+          "Delete, rename, rewrite history, or otherwise destructively alter the source mixed repository.",
+          "Copy source CURRENT_STATE, TASK_INDEX, CURRENT_TASK, IMPLEMENTATION_TRACE, audit history, Starter planning history, or candidate clutter into the core Runtime zero-state.",
+          "Copy Kyd Core implementation or source Runtime/task history into the SaaS Starter template.",
+          "Change Bootstrap zero-state semantics, resume Starter aggregation, or implement a fictional existing-project adoption command.",
+          "Overwrite an existing local directory or GitHub repository, force-push, or guess unresolved owner/visibility/authentication."
+        ],
+        "acceptance": [
+          "The source repository remains preserved and only normal Runtime registration/closeout files change.",
+          "The standalone core repository has independent Git history, no SaaS application code, required Kyd Core sources/provenance, and a concise truthful README.",
+          "The core initializer passes clean-target and non-conflicting non-empty-target tests without changing unrelated existing files.",
+          "A project generated from the new core remains clean zero-state with no source or migration task history.",
+          "The standalone Starter repository has independent Git history, distributable code under template/, no Kyd Core/runtime history, and concise separation guidance.",
+          "The extracted Starter passes all safely available repository-supported static/build validation without resuming aggregation.",
+          "New GitHub repositories are created and pushed only under verified source owner and visibility, or exact publication commands are reported."
+        ],
+        "verification": [
+          "Run source Runtime structure and execution validation before migration work.",
+          "Run the verified initializer and validators in the new core repository and verify pinned Authority integrity and clean zero-state.",
+          "Run a non-conflicting non-empty target capability test and compare pre-existing file hashes before and after initialization.",
+          "Run mandatory non-pollution checks for migration and source task/history identifiers.",
+          "Inspect the Starter extraction allowlist/exclusions and run repository-supported package/static/build checks where safely possible.",
+          "Verify both targets have independent .git directories and focused initial commits without imported source history.",
+          "Verify GitHub owner, visibility, authentication, repository-name availability, remotes, and pushes when publication is possible.",
+          "Run source Runtime structure/closeout validation and git diff --check before marking KPS-SPLIT-001 VERIFIED."
+        ]
+      }
     }
   ]
 }
@@ -1983,3 +2064,5 @@ BS-IMPL-010 → BS-IMPL-020 → BS-IMPL-030 → BS-IMPL-040
 BS-IMPL-010, BS-IMPL-020, BS-IMPL-030, and BS-IMPL-040 are VERIFIED. The registered Bootstrap implementation task graph is complete.
 
 KPS-BS-DOC-002 is VERIFIED as repository-local documentation history. It is not part of generated Bootstrap zero-state.
+
+KPS-SPLIT-001 is VERIFIED repository-local separation history. It does not enter generated Bootstrap zero-state; GitHub publication remains an external pending step because `gh` was unavailable.
